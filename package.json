@@ -1,0 +1,32 @@
+{
+  "name": "vortiquest",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro check && astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "check": "astro check",
+    "test": "node --test tests/site.test.mjs tests/blog.test.mjs",
+    "deploy:check": "wrangler deploy --dry-run",
+    "deploy": "node scripts/check-launch.mjs && wrangler deploy",
+    "launch:check": "node scripts/check-launch.mjs",
+    "test:blog-build": "node scripts/test-blog-build.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.0.0",
+    "@fontsource/dm-sans": "^5.0.0",
+    "@fontsource/instrument-serif": "^5.0.0",
+    "astro": "^6.0.0",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.0",
+    "typescript": "^5.9.0",
+    "wrangler": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

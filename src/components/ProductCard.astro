@@ -1,0 +1,11 @@
+---
+import ProductArt from './ProductArt.astro';
+import type { Product } from '../data/site';
+interface Props { product: Product }
+const { product: p } = Astro.props;
+---
+<article class:list={['product-card', p.color]}>
+  <a class="product-image-link" href={`/products/${p.slug}/`} aria-label={`Explore ${p.name}`}><ProductArt kind={p.mark}/><span class="round-arrow">↗</span></a>
+  <div class="product-meta"><span>{p.category}</span></div>
+  <h3><a href={`/products/${p.slug}/`}>{p.name}</a></h3><p>{p.summary}</p>
+</article>

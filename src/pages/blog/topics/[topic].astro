@@ -1,0 +1,16 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ArticleList from '../../../components/ArticleList.astro';
+import TopicLinks from '../../../components/TopicLinks.astro';
+import { getArticles } from '../../../blog/articles';
+import { topics } from '../../../data/topics';
+export function getStaticPaths() { return topics.map(topic => ({ params: { topic: topic.id }, props: { topic } })); }
+const { topic } = Astro.props;
+const all = await getArticles();
+const articles = all.filter(article => article.data.topics.includes(topic.id));
+const counts = new Map(topics.map(item => [item.id, all.filter(article => article.data.topics.includes(item.id)).length]));
+---
+<Layout title={`${topic.name} — Blog`} description={topic.description}>
+  <section class="blog-hero blog-topic-hero"><div class="container"><a class="back-link" href="/blog/">← All articles</a><span class="eyebrow">EXPLORE A TOPIC</span><h1>{topic.name}<span class="serif-period">.</span></h1><p>{topic.description}</p></div></section>
+  <div class="container blog-archive"><TopicLinks active={topic.id} counts={counts}/><ArticleList articles={articles}/></div>
+</Layout>

@@ -1,0 +1,16 @@
+---
+import { Image } from 'astro:assets';
+import planning from '../assets/planning.jpg';
+import advisory from '../assets/advisory.jpg';
+import whiteboard from '../assets/whiteboard.jpg';
+const scenes = [
+  { image: planning, title: 'Too many subscriptions.', caption: 'Another renewal. The same old question: do we need it?', text: 'We help you take stock of what you use, what overlaps, and which subscriptions still earn their place.', alt: 'A laptop and notebook on a desk, ready for reviewing the tools used at work.', credit: 'Luna Lovegood' },
+  { image: advisory, title: 'Tools that don’t connect.', caption: 'The information is there. Just somewhere else.', text: 'We look at how information moves between people and platforms, then assess whether a better connection could save the extra steps.', alt: 'Two people comparing work across laptops and papers at a shared table.', credit: 'Kindel Media' },
+  { image: whiteboard, title: 'Workarounds became the workflow.', caption: '“Just this once” has somehow become every Tuesday.', text: 'We listen to how the work actually gets done and help you decide what to simplify, connect, or build next.', alt: 'People discussing a process on a whiteboard covered with sticky notes.', credit: 'Walls.io' },
+];
+---
+<section class="everyday-story container section" aria-labelledby="everyday-title">
+  <div class="section-heading"><div><span class="eyebrow">SOUND FAMILIAR?</span><h2 id="everyday-title">Technology should make<br/><em>your day simpler.</em></h2></div><p>You shouldn’t need a workaround for your workaround. Let’s look at what’s getting in the way—and what would make a useful difference.</p></div>
+  <div class="everyday-scenes">{scenes.map(scene => <article><figure><Image src={scene.image} widths={[360, 640, 960]} sizes="(max-width: 650px) 100vw, 33vw" alt={scene.alt} loading="lazy" format="webp" quality={82}/><figcaption>{scene.caption}</figcaption></figure><h3>{scene.title}</h3><p>{scene.text}</p><span class="scene-credit">Illustrative photography · {scene.credit} / Pexels</span></article>)}</div>
+  <a class="text-link" href="/services/">Find a clearer way forward with us <span aria-hidden="true">↗</span></a>
+</section>

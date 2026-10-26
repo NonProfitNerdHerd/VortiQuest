@@ -1,0 +1,6 @@
+---
+import { topics } from '../data/topics';
+interface Props { active?: string; counts: Map<string, number> }
+const { active, counts } = Astro.props;
+---
+<nav class="topic-browser" aria-label="Blog topics"><span class="eyebrow">TOPICS</span><ul><li><a href="/blog/" aria-current={!active ? 'page' : undefined}>All articles</a></li>{topics.map(topic => <li><a href={`/blog/topics/${topic.id}/`} aria-current={active === topic.id ? 'page' : undefined}>{topic.name}<span class="topic-count" aria-label={`${counts.get(topic.id) ?? 0} articles`}>{counts.get(topic.id) ?? 0}</span></a></li>)}</ul></nav>

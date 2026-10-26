@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTA from '../components/CTA.astro';
+import AdvisoryPromise from '../components/AdvisoryPromise.astro';
+import { Image } from 'astro:assets';
+import advisoryPhoto from '../assets/advisory.jpg';
+import planning from '../assets/planning.jpg';
+import { services } from '../data/site';
+const considerations = [
+  ['Your work & your people', 'Does the option solve the real problem? We consider business fit, accessibility, and the effect on the people who will use it.'],
+  ['Security & responsible use', 'We assess your privacy and security requirements, ethical considerations, and responsible use of data and AI—including where human review is needed.'],
+  ['Ownership & the long term', 'We compare maintainability, ongoing costs, access to your data, and who will be responsible for keeping the solution useful.'],
+];
+---
+<Layout title="Services" description="Technology advisors on your side. Evaluate SaaS, integrations, and custom development with your organization’s long-term interests, security, and ethical requirements in mind.">
+<section class="container page-hero services-hero"><div><span class="eyebrow">EXPERTISE, WITHOUT THE DISTANCE</span><h1>Let’s make technology<br/><em>work for you.</em></h1><p class="lead">You don’t need to arrive with a technology brief. Tell us what’s getting in the way. We’ll listen, understand the work, and help you decide what to do next.</p></div><figure class="services-photo"><Image src={advisoryPhoto} widths={[480, 800, 1200, 1600]} sizes="(max-width: 800px) 100vw, 44vw" alt="Two people discussing ideas around laptops and papers in a naturally lit workspace." loading="eager" fetchpriority="high" format="webp" quality={84}/><figcaption>Illustrative photography · Kindel Media / Pexels</figcaption></figure></section>
+<AdvisoryPromise/>
+<section class="container decision-story"><figure class="decision-photo"><Image src={planning} widths={[480, 800, 1200]} sizes="(max-width: 800px) 100vw, 42vw" alt="An overhead view of someone working at a laptop on a bright desk with a notebook and office supplies." loading="lazy" format="webp" quality={82}/><figcaption>Illustrative photography · Luna Lovegood / Pexels</figcaption></figure><div><span class="eyebrow">A DECISION YOU CAN UNDERSTAND</span><h2>Build, buy,<br/><em>or make it connect.</em></h2><p class="decision-intro">Keeping what already works is an option, too. We assess the requirements with you and explain the tradeoffs before recommending a path.</p><dl class="decision-considerations">{considerations.map(([title, text]) => <div><dt>{title}</dt><dd>{text}</dd></div>)}</dl></div></section>
+<section class="container section service-capabilities"><div class="section-heading"><div><span class="eyebrow">FROM GOOD ADVICE TO PRACTICAL HELP</span><h2>The skills to<br/><em>put it into practice.</em></h2></div><p>Once the direction is clear, we can help with  implementation and ongoing support.  Our role and the work are agreed together.</p></div>{services.map((s, i) => <article class="service-detail" id={['guidance','development','hosting'][i]}><div class="service-introduction"><h3 class="service-title">{s.title}</h3><p>{s.text}</p></div><div class="service-accordion">{s.items.map(item => <details><summary><span>{item.title}</span><span class="accordion-indicator" aria-hidden="true"></span></summary><div class="accordion-description"><p>{item.description}</p></div></details>)}</div></article>)}</section>
+<section class="container note-band"><h2>Thoughtful choices.<br/><em>Lasting partnership.</em></h2><p>Our applications and paid hosting are options we evaluate alongside other solutions. The goal is to help you solve the right problem for the long term, with a clear understanding of the work and responsibilities involved.</p></section><CTA/>
+</Layout>

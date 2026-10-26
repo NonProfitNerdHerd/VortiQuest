@@ -1,0 +1,6 @@
+---
+import { topicById } from '../data/topics';
+interface Props { ids: string[] }
+const { ids } = Astro.props;
+---
+<div class="article-topic-group"><span class="eyebrow">Topics</span><ul class="article-topics" aria-label="Topics">{ids.map(id => <li><a href={`/blog/topics/${id}/`}>{topicById.get(id)!.name}</a></li>)}</ul></div>

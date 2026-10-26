@@ -1,0 +1,10 @@
+---
+interface Props { kind: string; large?: boolean }
+const { kind, large = false } = Astro.props;
+---
+<div class:list={['product-art', kind, { large }]} aria-hidden="true">
+  <div class="art-grid"></div>
+  {kind === 'play' && <><span class="art-orbit"></span><span class="art-disc"><svg viewBox="0 0 100 100"><path d="M40 29 71 50 40 71Z" fill="currentColor"/></svg></span><span class="art-label">A new perspective.</span></>}
+  {kind === 'lines' && <><span class="art-page"><i></i><b>Aa.</b><i></i><i></i><i></i></span><span class="art-label">Make room for your ideas.</span></>}
+  {kind === 'asterisk' && <><span class="art-flower">✳</span><span class="art-label">Good work, together.</span></>}
+</div>

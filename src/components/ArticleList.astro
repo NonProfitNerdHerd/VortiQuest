@@ -1,0 +1,11 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate } from '../blog/articles';
+import ArticleTopics from './ArticleTopics.astro';
+interface Props { articles: CollectionEntry<'blog'>[] }
+const { articles } = Astro.props;
+---
+{articles.length ? <div class="article-list">{articles.map(article => <article class="article-row">
+  <div class="article-date">{article.data.status === 'draft' ? <span class="draft-label">Draft · Local preview</span> : article.data.publishedAt && <time datetime={article.data.publishedAt.toISOString()}>{formatDate(article.data.publishedAt)}</time>}</div>
+  <div><h2><a href={`/blog/${article.id}/`}>{article.data.title}</a></h2><p>{article.data.description}</p><ArticleTopics ids={article.data.topics}/><a class="button article-read-button" href={`/blog/${article.id}/`}>Read Article</a></div>
+</article>)}</div> : <div class="blog-empty"><h2>Articles coming soon.</h2><p>We’re making room for useful ideas about technology and the work it supports. Come back for thoughtful explanations, practical questions, and lessons we can share.</p><a class="text-link" href="/contact/">Have a question in the meantime? Let’s talk <span aria-hidden="true">↗</span></a></div>}

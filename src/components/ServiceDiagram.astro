@@ -1,0 +1,9 @@
+---
+const steps = [
+  { title: 'Guidance', text: 'Find the right direction.' },
+  { title: 'Development', text: 'Build what fits your work.' },
+  { title: 'Hosting', text: 'Give your app a home.' },
+  { title: 'Ongoing support', text: 'Keep moving forward.' },
+];
+---
+<div class="service-diagram"><span class="eyebrow">CONNECTED HELP, FROM IDEA TO EVERYDAY USE</span><ol>{steps.map(step => <li><h3>{step.title}</h3><p>{step.text}</p></li>)}</ol></div>

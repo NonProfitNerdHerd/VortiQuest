@@ -1,0 +1,9 @@
+---
+import { Image } from 'astro:assets';
+import collaboration from '../assets/collaboration.jpg';
+---
+<section class="container support-story">
+  <div class="support-story-heading"><span class="eyebrow">A PARTNER FOR WHAT COMES NEXT</span><h2>Good software.<br/><em>Continued support.</em></h2><p>From getting set up to figuring out the next improvement, we stay involved in the work that keeps your technology useful.</p></div>
+  <figure class="support-photo"><Image src={collaboration} widths={[640, 960, 1440, 1920]} sizes="(max-width: 800px) 100vw, 90vw" alt="A close-up of two people discussing work on a laptop at a shared table." loading="lazy" format="webp" quality={82}/><figcaption>Illustrative photography by Kaboompics / Pexels</figcaption></figure>
+  <div class="support-details"><div><span class="eyebrow">GET STARTED WELL</span><h3>Setup with a clear handover.</h3><p>Help with configuration, deployment, and understanding how your application fits into the tools you already use.</p></div><div><span class="eyebrow">KEEP IT USEFUL</span><h3>A plan beyond launch day.</h3><p>Scoped maintenance, troubleshooting, hosting, and improvements. We agree on the responsibilities and support you need before work begins.</p></div><a class="circle-link" href="/contact/" aria-label="Talk with us about ongoing support">↗</a></div>
+</section>

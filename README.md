@@ -1,0 +1,110 @@
+# VortiQuest
+
+An Astro + TypeScript studio website, deployed as prerendered assets on Cloudflare Workers. Custom CSS, self-hosted fonts, no CMS, database, analytics, or server-side contact form.
+
+Review deployment: https://vortiquest-preview.ike-j-rebout.workers.dev (a separate preview Worker; the production domain has not been changed).
+
+## Local development
+
+Use Node 24 LTS and npm. Run commands in this directory (the Git checkout is nested inside the outer VortiQuest workspace).
+
+```sh
+npm ci
+npm run dev
+```
+
+```sh
+npm run build
+npm test
+npm run deploy:check
+npm run preview
+```
+
+The build runs Astro's strict type/template check, then generates static pages into `dist/`. Tests inspect that output, including all page routes, internal links/assets, metadata, and contact behavior. `deploy:check` packages a Cloudflare deployment without publishing.
+
+## Content and assets
+
+- `src/data/site.ts`: contact details, typed founder profiles, product content, repository links, and launch status. An empty repository URL renders a non-clickable **Add Link** label. John Doe is explicitly a temporary founder name.
+- `src/pages`: page copy and layouts. Product routes come from the typed product data.
+- `src/styles/global.css`: design tokens and responsive components.
+- `public`: logo icon, social artwork, and Cloudflare response headers.
+- `src/assets/ATTRIBUTION.md`: photo sources and license notes. Local photographs are processed into responsive WebP images by Astro; no external image requests are required at runtime.
+
+Business email: `support@vorti.quest`. The production origin defaults to `https://vorti.quest`, inferred from that supplied address, and **must be confirmed**. Set `SITE_URL` in the build environment to override it. Domain-dependent canonical URLs, sitemap, and social URLs derive from this origin.
+
+Until `site.domainConfirmed` is true, pages are noindex and robots disallows indexing. `npm run deploy` also runs a content readiness check. This is intentional: preview builds work while production information is incomplete.
+
+## Launch checklist
+
+1. Confirm domain and update `site.domainConfirmed`; set the production `SITE_URL` in Cloudflare.
+2. Add the GitHub account and three repository URLs, replacing **Add Link**. Verify licenses and setup documentation independently for each product.
+3. Confirm VortiQuest and VortiBlog copy and capabilities. Set their `verified` flags only after review. The discovered `NonProfitNerdHerd/vorti-blog` README describes **VortiCause**, so do not automatically link it to VortiBlog.
+4. Replace clearly labeled product identity illustrations with real application screenshots and useful alt text/captions. Use responsive images through Astro's image component, with fixed dimensions and lazy loading below the fold. The current illustrations are native CSS/SVG; they do not impersonate application screens.
+5. Review both founder bios, replace John Doe's temporary name, and review the privacy notice. Add real founder portraits only when supplied and approved.
+6. Review the included 1200×630 `public/social.png` social preview; its editable source is `public/social.svg`.
+7. Check homepage and one product page on desktop and mobile, then all routes. Check keyboard focus, menu, email/copy actions, product inquiry subjects, reduced motion, text zoom, contrast, and 404 behavior.
+8. Run build, tests, dry-run, and `npm run launch:check` before production deployment.
+
+## Cloudflare + GitHub deployment
+
+`wrangler.jsonc` configures a static-only Worker; no Worker script, runtime bindings, or Node compatibility flag is needed. Assets are served directly by Cloudflare with explicit 404 handling and trailing-slash URLs. `_headers` declares security headers.
+
+Connect the GitHub repository in Cloudflare Workers & Pages → create/import a Worker → Git repository. The repository root is **this checkout's root**, not the outer workspace folder.
+
+- Build command: `npm run build && npm test`
+- Deploy command: `npm run deploy`
+- Non-production branch command: `npx wrangler versions upload`
+- Enable non-production branch builds and version preview URLs. Check the preview URL before promoting a release.
+- Configure `SITE_URL`, connect the confirmed custom domain, and verify Cloudflare's access and logging settings against the privacy notice.
+
+The included GitHub Actions workflow runs build, content/link tests, and Wrangler dry-run on pull requests and main pushes. It does not need deployment secrets. Cloudflare's GitHub connection and custom domain need to be configured in the owner's account; no credentials are committed.
+
+Manual authenticated deploy after completing the launch checklist:
+
+```sh
+npx wrangler login
+npm run build
+npm test
+npm run deploy
+```
+
+## Design direction
+
+Cloud & Ink: soft white `#F7F9FC`, mist blue `#E7EFF8`, navy `#23344D`, and blue `#4269B0`; DM Sans paired with Instrument Serif. Colors are consolidated in the CSS root tokens. Preserve the geometric V symbol and wordmark. The homepage combines editorial workspace photography with an illustrative collaboration section and a native service diagram. About leads with principles and scoped support, followed by two equally weighted founder profiles. Product identity graphics remain illustrative until screenshots are supplied. Avoid decorative dashboards, fake performance claims, and repeated generic card sections.
+
+The Cloud & Ink direction and photography approach were selected by the owner. The implementation remains reviewable in the preview Worker. Once the final visual treatment is approved, capture its rules and examples as a repository-specific skill.
+
+## Content provenance
+
+Founder name and business email were supplied directly. Background language is conservatively based on public material linked below, with no employer endorsement implied:
+
+- https://www.linkedin.com/in/ike-rebout (requested founder profile; direct retrieval unavailable)
+- https://www.dvidshub.net/news/558600/88th-readiness-division-collaborates-across-staff-sections-create-robust-facilities-dashboard
+- https://www.army.mil/article-amp/255536/88th_readiness_division_support_key_to_successful_oaw_mission_at_fort_mccoy
+- https://github.com/NonProfitNerdHerd/vorti-blog/blob/main/README.md (current VortiCause capabilities; roadmap claims excluded)
+
+## Advisory positioning
+
+Client interests lead the recommendations: buying SaaS, connecting existing tools, building custom software, or keeping what already works. Home and Services share the central advisory statement from `src/data/site.ts`. Copy considers business fit, people, accessibility, privacy, security, ethical data/AI use, ownership, maintainability, and ongoing costs. Our own products and paid hosting are options evaluated against customer needs. Use warm, plain-language invitations; do not invent formal fiduciary duties, certifications, guarantees, commission policies, or vendor-independence claims. Services photography is illustrative and credited in `src/assets/ATTRIBUTION.md`.
+
+## Product business cases and navigation
+
+The header stays visible while scrolling, with a solid background, anchor offsets, and an Escape-to-close mobile menu. Product case content and photos live in the typed product data. Products and detail pages share the same narrative component: problem, rationale, capabilities, audience, and next actions. VortiQuest is the media inbox at https://app.vorti.quest/; the company shares its name. The first-app origin was supplied by the owner; its feature claims were verified against the public product site. VortiBlog’s detailed story and feature set are still being prepared. Editorial images illustrate use contexts and are not application screenshots.
+
+The old `/products/vorti-youtube-feeder/` route redirects permanently to `/products/vortiquest/` using Cloudflare `_redirects`, with and without a trailing slash. The legacy product inquiry name is normalized to VortiQuest. Astro preview does not emulate Cloudflare redirects; validate status and Location through Wrangler or the deployed preview.
+
+## Full-width hero bands
+
+Home, Products, and About use `HeroBand.astro`: a mist-blue full-width section with a constrained copy slot, an edge-reaching photograph, and a credit slot. Desktop text stays on solid color, with a soft blend at the image edge. At tablet and phone widths, the photo follows the copy in normal flow. Home retains its original workspace photo; Products uses a whiteboard planning photograph, and About uses a separate collaborative-planning photograph. Services retains its existing layout. Credits and licenses are recorded with the local assets.
+
+## Calmer sections and compact navigation
+
+The fixed header reserves its expanded height (110px desktop, 85px at 800px and below). Above 64px scroll it compacts to 76px / 68px, restoring below 16px. Hysteresis prevents flicker; anchors and the mobile menu use the active height. Motion respects reduced-motion preferences. Escape closes the menu and restores focus.
+
+`EverydayStory.astro` follows the advisory statement, using three existing licensed photographs to describe everyday friction. The clarity section forms one full-width mist-blue band. Section introductions sit below headings; named service sequences retain ordered-list semantics without decorative numbering or unrelated glyphs. Photography credits remain in `src/assets/ATTRIBUTION.md`.
+
+## Blog
+
+The Blog menu opens `/blog/`. Topics are managed in `src/data/topics.ts`, and Markdown articles live in `src/content/blog/`. Read [the authoring guide](docs/blog-authoring.md) and copy [the article template](docs/article-template.md) to start a draft. `npm run dev` includes drafts locally; builds and the public preview Worker exclude them before rendering and asset registration. The initial public archive is intentionally empty.
+
+Run `npm run test:blog-build` for isolated publication/unpublication and draft-asset checks, alongside the normal build/tests. It creates a temporary project and never publishes fixture articles. The CI workflow includes this check.

@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ArticleList from '../../components/ArticleList.astro';
+import TopicLinks from '../../components/TopicLinks.astro';
+import { getArticles } from '../../blog/articles';
+import { topics } from '../../data/topics';
+const articles = await getArticles();
+const counts = new Map(topics.map(topic => [topic.id, articles.filter(article => article.data.topics.includes(topic.id)).length]));
+---
+<Layout title="Blog" description="Ideas and practical questions about technology decisions, custom development, integrations, AI, hosting, and support.">
+  <section class="blog-hero"><div class="container"><span class="eyebrow">THE VORTIQUEST BLOG</span><h1>A little perspective.<br/><em>A useful next step.</em></h1><p>Thoughts on choosing technology, building what fits, and looking after it. For the decisions that deserve more than “there’s an app for that.”</p></div></section>
+  <div class="container blog-archive"><TopicLinks counts={counts}/><ArticleList articles={articles}/></div>
+</Layout>

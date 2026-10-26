@@ -1,0 +1,9 @@
+---
+interface Props { variant: 'home' | 'products' | 'about' }
+const { variant } = Astro.props;
+---
+<section class:list={['hero-band', `hero-band--${variant}`]}>
+  <div class="hero-band-inner container"><div class="hero-band-copy"><slot/></div></div>
+  <figure class="hero-band-photo"><slot name="image"/></figure>
+  <div class="hero-band-credit container"><slot name="credit"/></div>
+</section>

@@ -1,0 +1,11 @@
+---
+import ProductVisual from './ProductVisual.astro';
+import type { Product } from '../data/site';
+interface Props { product: Product; detail?: boolean }
+const { product: p, detail = false } = Astro.props;
+---
+<section class:list={['product-case', { 'case-detail': detail }]} id={detail ? 'business-case' : p.slug} aria-label={`${p.name} business case`}>
+  <div class="case-introduction"><span class="eyebrow">{p.category}</span>{detail ? <h2>{p.summary}</h2> : <h2><a href={`/products/${p.slug}/`}>{p.name}<span class="serif-period">.</span></a></h2>}{!detail && <p class="case-tagline">{p.summary}</p>}<p class="case-description">{p.description}</p></div>
+  <div class="case-main"><ProductVisual product={p} priority={detail || p.slug === 'vortiquest'}/><div class="case-story"><div><h3>The problem</h3><p>{p.problem}</p></div><div><h3>{p.rationaleTitle}</h3><p>{p.rationale}</p></div><p class="case-personality">{p.personality}</p></div></div>
+  <div class="case-bottom"><div class="case-capabilities"><h3>What it helps you do</h3>{p.verified ? <ul>{p.capabilities.map(item => <li>{item}</li>)}</ul> : <div class="case-preparing"><span class="eyebrow">PRODUCT DETAILS BEING PREPARED</span><p>We’re confirming the feature list and implementation details. Ask us for a walkthrough and a conversation about fit.</p></div>}{p.platformNote && <p class="case-platform">{p.platformNote}</p>}</div><div class="case-fit"><h3>Who it fits</h3><p>{p.audience}</p><div class="case-actions">{p.publicUrl && <a class="button" href={p.publicUrl}>Explore {p.name} <span aria-hidden="true">↗</span></a>}{!detail && <a class="text-link" href={`/products/${p.slug}/`}>Read the business case ↗</a>}<a class="text-link" href={`/contact/?product=${encodeURIComponent(p.name)}`}>Ask about hosting & support ↗</a></div>{!p.publicUrl && <span class="pending-link">Product website · Add Link</span>}</div></div>
+</section>

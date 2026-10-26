@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+---
+<Layout title="Let’s talk" description="Not sure which technology you need? Talk with VortiQuest about your goals, the options, and a practical way forward. Email support@vorti.quest.">
+<section class="container page-hero"><span class="eyebrow">TELL US WHAT YOU’RE THINKING</span><h1>A good next step?<br/><em>A conversation.</em></h1><p class="lead">You don’t need to know which technology you need. Start by telling us what’s getting in the way. We’re here to listen, understand your goals, and help you find a practical way forward.</p></section>
+<section class="container contact-layout"><div><span class="eyebrow">A HUMAN ON THE OTHER END</span><a class="contact-email" href={`mailto:${site.email}`}>{site.email} ↗</a><p>Reach out to the VortiQuest team about a project, a technology decision, or hosting one of our products.</p><div class="contact-actions"><a id="email-action" class="button" href={`mailto:${site.email}?subject=Let%E2%80%99s%20talk%20about%20my%20technology%20needs`}>Let’s talk about your needs <span aria-hidden="true">↗</span></a><button id="copy-email" class="copy-email" type="button" hidden>Copy email address</button></div><p id="copy-feedback" class="copy-feedback" role="status" aria-live="polite"></p><p class="muted">Your email opens in your own email application. There’s no website form to submit.</p></div><aside><h2>A useful starting point.</h2><p>Include whatever you know so far:</p><ul><li>What your business or team does.</li><li>The tools you use today.</li><li>The problem you’d like to solve.</li><li>Any timing or budget considerations.</li></ul><p class="muted">Exploring product hosting? Mention the product and what you need it to do.</p></aside></section>
+<script>
+const action = document.querySelector<HTMLAnchorElement>('#email-action');
+const requestedProduct = new URLSearchParams(location.search).get('product');
+const product = requestedProduct === 'Vorti YouTube Feeder' ? 'VortiQuest' : requestedProduct;
+const allowedProducts = ['VortiQuest', 'VortiBlog', 'VortiCause'];
+if (action && product && allowedProducts.includes(product)) action.href = `mailto:support@vorti.quest?subject=${encodeURIComponent(`Hosting inquiry: ${product}`)}`;
+const copy = document.querySelector<HTMLButtonElement>('#copy-email');
+const feedback = document.querySelector('#copy-feedback');
+if (copy && navigator.clipboard) { copy.hidden = false; copy.addEventListener('click', async () => { try { await navigator.clipboard.writeText('support@vorti.quest'); if (feedback) feedback.textContent = 'Email address copied.'; } catch { if (feedback) feedback.textContent = 'Please select and copy the email address above.'; } }); }
+</script>
+</Layout>

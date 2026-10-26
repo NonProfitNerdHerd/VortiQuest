@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTA from '../components/CTA.astro';
+import SupportStory from '../components/SupportStory.astro';
+import ServiceDiagram from '../components/ServiceDiagram.astro';
+import FounderProfile from '../components/FounderProfile.astro';
+import { founders } from '../data/site';
+import HeroBand from '../components/HeroBand.astro';
+import { Image } from 'astro:assets';
+import teamPlanning from '../assets/team-planning.jpg';
+const principles = [
+  ['Understand before recommending.', 'Start with your people, your goals, and the work itself. A useful recommendation begins with asking the right questions.'],
+  ['Choose what fits. Explain why.', 'Your organization’s best interests guide our recommendations. We compare buying, connecting, building, and keeping what works—and explain when another provider’s product is the better fit.'],
+  ['Think beyond the build.', 'We assess privacy, security, accessibility, ownership, maintainability, and ongoing costs with you. Ethical requirements and the people affected belong in the decision from the beginning.'],
+  ['Share useful work.', 'We share through repositories and help others where we can. Paid service, support, and hosting make deeper involvement possible.'],
+  ['Use new technology thoughtfully.', 'We consider whether AI is appropriate for the task, how data will be used, what people could be affected, and how output will be checked. A simpler approach may serve you better.'],
+];
+---
+<Layout title="About" description="VortiQuest puts your organization’s long-term interests at the heart of technology decisions, with honest advice, responsible development, and ongoing support.">
+<HeroBand variant="about"><span class="eyebrow">OUR PRINCIPLES. YOUR PROGRESS.</span><h1>Technology that fits.<br/><em>People who care.</em></h1><p class="lead">We listen first and recommend what serves your organization over the long term. That could mean an existing platform, a better connection, something custom, or keeping what already works.</p><Image slot="image" src={teamPlanning} widths={[480, 800, 1200, 1600, 2000]} sizes="(max-width: 800px) 100vw, 45vw" alt="Two people discussing a notebook and planning work together beside a laptop." loading="eager" fetchpriority="high" format="webp" quality={82}/><span slot="credit">Illustrative photography · Alena Darmel / Pexels</span></HeroBand>
+<section class="container principles-section section"><div class="section-heading"><div><span class="eyebrow">WHAT YOU CAN EXPECT FROM US</span><h2>A shared way<br/>of <em>doing things.</em></h2></div><p>Our principles shape the recommendations  we make and the work we take on.</p></div><div class="values-list">{principles.map(([heading, text]) => <article><h3>{heading}</h3><p>{text}</p></article>)}</div></section>
+<SupportStory/>
+<section class="container section"><div class="section-heading"><div><span class="eyebrow">THE WORKING RELATIONSHIP</span><h2>Clarity at<br/><em>every step.</em></h2></div><p>Understand, evaluate, implement, and support.  A practical approach, shaped around your needs.</p></div><ServiceDiagram/></section>
+<section class="founders-section"><div class="container section"><div class="section-heading"><div><span class="eyebrow">THE PEOPLE BEHIND VORTIQUEST</span><h2>Two perspectives.<br/><em>A shared commitment.</em></h2></div><p>Business needs and technical delivery,  working together from the start.</p></div><div class="founders-grid">{founders.map(founder => <FounderProfile founder={founder}/>)}</div></div></section>
+<CTA/>
+</Layout>

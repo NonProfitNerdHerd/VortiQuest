@@ -1,0 +1,4 @@
+---
+import { advisory } from '../data/site';
+---
+<section class="container advisory-promise"><div><span class="eyebrow">ADVISORS ON YOUR SIDE</span><h2 aria-label={advisory.title}>Advice with your<br/><em>best interests</em><br/>at heart.</h2></div><div>{advisory.paragraphs.map(paragraph => <p>{paragraph}</p>)}<a class="text-link" href="/contact/">Tell us what’s getting in the way ↗</a></div></section>
