@@ -331,3 +331,10 @@ main :where(section,article,figure,div,aside),.footer-top>*{min-width:0}
 /* The wordmark and decorative menu symbol retain their visual proportions. */
 .mobile-nav summary{white-space:nowrap}
 .mobile-nav summary span{font-size:16px;margin-left:8px}
+
+/* Keep article topic links secondary to the title and byline. */
+.article-header .article-topic-group{margin-top:20px}
+.article-header .article-topic-group>.eyebrow{font-size:.7rem}
+.article-header .article-topic-group .article-topics{margin-top:7px;gap:7px}
+.article-header .article-topics a{min-height:28px;padding:3px 8px;font-size:.75rem;line-height:1.5;border-color:var(--line);background:transparent;color:var(--muted)}
+.article-header .article-topics a:hover{background:var(--ink);color:var(--white);border-color:var(--ink)}
