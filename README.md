@@ -24,7 +24,7 @@ The build runs Astro's strict type/template check, then generates static pages i
 
 ## Content and assets
 
-- `src/data/site.ts`: contact details, typed founder profiles, product content, repository links, and launch status. An empty repository URL renders a non-clickable **Add Link** label. John Doe is explicitly a temporary founder name.
+- `src/data/site.ts`: contact details, product content, repository links, and launch status. An empty repository URL renders a non-clickable **Add Link** label.
 - `src/pages`: page copy and layouts. Product routes come from the typed product data.
 - `src/styles/global.css`: design tokens and responsive components.
 - `public`: logo icon, social artwork, and Cloudflare response headers.
@@ -40,7 +40,7 @@ Until `site.domainConfirmed` is true, pages are noindex and robots disallows ind
 2. Add the GitHub account and three repository URLs, replacing **Add Link**. Verify licenses and setup documentation independently for each product.
 3. Confirm VortiQuest and VortiBlog copy and capabilities. Set their `verified` flags only after review. The discovered `NonProfitNerdHerd/vorti-blog` README describes **VortiCause**, so do not automatically link it to VortiBlog.
 4. Replace clearly labeled product identity illustrations with real application screenshots and useful alt text/captions. Use responsive images through Astro's image component, with fixed dimensions and lazy loading below the fold. The current illustrations are native CSS/SVG; they do not impersonate application screens.
-5. Review both founder bios, replace John Doe's temporary name, and review the privacy notice. Add real founder portraits only when supplied and approved.
+5. Review the privacy notice.
 6. Review the included 1200×630 `public/social.png` social preview; its editable source is `public/social.svg`.
 7. Check homepage and one product page on desktop and mobile, then all routes. Check keyboard focus, menu, email/copy actions, product inquiry subjects, reduced motion, text zoom, contrast, and 404 behavior.
 8. Run build, tests, dry-run, and `npm run launch:check` before production deployment.
@@ -70,17 +70,14 @@ npm run deploy
 
 ## Design direction
 
-Cloud & Ink: soft white `#F7F9FC`, mist blue `#E7EFF8`, navy `#23344D`, and blue `#4269B0`; DM Sans paired with Instrument Serif. Colors are consolidated in the CSS root tokens. Preserve the geometric V symbol and wordmark. The homepage combines editorial workspace photography with an illustrative collaboration section and a native service diagram. About leads with principles and scoped support, followed by two equally weighted founder profiles. Product identity graphics remain illustrative until screenshots are supplied. Avoid decorative dashboards, fake performance claims, and repeated generic card sections.
+Cloud & Ink: soft white `#F7F9FC`, mist blue `#E7EFF8`, navy `#23344D`, and blue `#4269B0`; DM Sans paired with Instrument Serif. Colors are consolidated in the CSS root tokens. Preserve the geometric V symbol and wordmark. The homepage combines editorial workspace photography with an illustrative collaboration section and a native service diagram. About presents principles, scoped support, and the working relationship. Product identity graphics remain illustrative until screenshots are supplied. Avoid decorative dashboards, fake performance claims, and repeated generic card sections.
 
 The Cloud & Ink direction and photography approach were selected by the owner. The implementation remains reviewable in the preview Worker. Once the final visual treatment is approved, capture its rules and examples as a repository-specific skill.
 
 ## Content provenance
 
-Founder name and business email were supplied directly. Background language is conservatively based on public material linked below, with no employer endorsement implied:
+The business email was supplied directly. Product capabilities are based on the source below:
 
-- https://www.linkedin.com/in/ike-rebout (requested founder profile; direct retrieval unavailable)
-- https://www.dvidshub.net/news/558600/88th-readiness-division-collaborates-across-staff-sections-create-robust-facilities-dashboard
-- https://www.army.mil/article-amp/255536/88th_readiness_division_support_key_to_successful_oaw_mission_at_fort_mccoy
 - https://github.com/NonProfitNerdHerd/vorti-blog/blob/main/README.md (current VortiCause capabilities; roadmap claims excluded)
 
 ## Advisory positioning

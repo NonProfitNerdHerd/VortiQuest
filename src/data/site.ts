@@ -6,7 +6,6 @@ import collaboration from '../assets/collaboration.jpg';
 export const site = {
   name: 'VortiQuest', email: 'support@vorti.quest',
   description: 'Technology advisors on your side. Thoughtful recommendations, custom development, and ongoing support shaped around your organization’s long-term interests.',
-  linkedIn: 'https://www.linkedin.com/in/ike-rebout',
   // Confirm the public domain and add source links before production release.
   domainConfirmed: false,
   github: '',
@@ -19,13 +18,6 @@ export const advisory = {
     'Our success is measured by how well your technology serves you. Every recommendation should earn your trust, respect your resources, and move you toward the future you want to build.',
   ],
 };
-export interface Founder {
-  name: string; role: string; bio: string; profile?: string; placeholder?: boolean;
-}
-export const founders: Founder[] = [
-  { name: 'Ike Rebout', role: 'CEO-Founder', bio: 'A background in knowledge management, collaborative technology, and connecting business needs with practical solutions.', profile: site.linkedIn },
-  { name: 'John Doe', role: 'COO-Co-Founder', bio: 'A computer science graduate of the University of Wisconsin–La Crosse, with several years of experience as a developer and project lead.', placeholder: true },
-];
 export interface Product {
   slug: string; name: string; category: string; summary: string;
   description: string; color: string; mark: string; repository: string;

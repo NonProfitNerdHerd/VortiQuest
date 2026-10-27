@@ -1,6 +1,0 @@
----
-import type { Founder } from '../data/site';
-interface Props { founder: Founder }
-const { founder } = Astro.props;
----
-<article class="founder-profile"><span class="eyebrow">{founder.role}</span><h3>{founder.name}</h3><p>{founder.bio}</p>{founder.profile && <a class="text-link" href={founder.profile}>Connect on LinkedIn ↗</a>}{founder.placeholder && <span class="founder-placeholder">Name to be confirmed</span>}</article>
