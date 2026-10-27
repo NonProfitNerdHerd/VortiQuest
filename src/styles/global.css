@@ -401,3 +401,16 @@ main :where(section,article,figure,div,aside),.footer-top>*{min-width:0}
 
 .product-art.checklist{color:var(--blue-hover)}.art-checklist{width:139px;height:177px;padding:24px 18px;background:var(--paper);box-shadow:9px 9px 0 var(--art-shadow);transform:rotate(-6deg)}.art-checklist svg{width:100%;height:100%}
 .product-identity .art-checklist{width:55px;height:76px;padding:9px;box-shadow:4px 4px 0 var(--art-shadow)}
+
+/* Product business cases are reading-focused articles, separate from collection cards. */
+.business-article{width:min(760px,calc(100% - 80px));margin-inline:auto;padding-block:64px 80px}
+.business-article header>.eyebrow{margin-bottom:24px}
+.business-article h1{font-size:clamp(3rem,6vw,5rem);overflow-wrap:anywhere}
+.business-article .business-deck{font:clamp(1.8rem,3vw,2.4rem)/1.25 var(--serif);color:var(--ink);margin-top:24px}
+.business-article h2{font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.2;letter-spacing:-.035em}
+.business-article p,.business-article ul{margin-top:20px;line-height:1.8}
+.business-article ul{padding-left:26px;color:var(--muted);list-style:disc}
+.business-article li+li{margin-top:10px}
+.business-article hr{border:0;border-top:1px solid var(--line);margin-block:36px}
+.business-contact .text-link{margin-top:20px}
+@media(max-width:580px){.business-article{width:calc(100% - 40px);padding-block:40px 56px}.business-article hr{margin-block:28px}.business-article .back-link{margin-bottom:28px}}

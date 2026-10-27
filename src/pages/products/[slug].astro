@@ -1,14 +1,31 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import ProductCase from '../../components/ProductCase.astro';
 import CTA from '../../components/CTA.astro';
 import { products } from '../../data/site';
+import type { BusinessCaseSection } from '../../data/site';
 export function getStaticPaths() { return products.map(product => ({ params: { slug: product.slug }, props: { product } })); }
 const { product: p } = Astro.props;
+const sections: BusinessCaseSection[] = p.businessCase ?? [
+  { heading: 'The problem', paragraphs: p.problem.split('\n\n') },
+  { heading: p.rationaleTitle, paragraphs: p.rationale.split('\n\n') },
+];
+const platformNote = p.platformNote?.replace(/^In development for /, 'The platform approach includes ');
 ---
 <Layout title={p.name+' — The business case'} description={p.description}>
-<section class="container page-hero product-detail-heading"><a href="/products/" class="back-link">← All products</a><span class="eyebrow">A PRODUCT BY VORTIQUEST / THE BUSINESS CASE</span><h1>{p.name}<span class="serif-period">.</span></h1></section>
-<div class="container"><ProductCase product={p} detail/></div>
-{p.businessCase && <div class="container expanded-business-case">{p.businessCase.map(section => <section><h2>{section.heading}</h2>{section.paragraphs.map(paragraph => <p>{paragraph}</p>)}{section.items && <ul>{section.items.map(item => <li>{item}</li>)}</ul>}{section.closing && <p>{section.closing}</p>}</section>)}</div>}
-<section class="container section product-development"><span class="eyebrow">IN DEVELOPMENT</span><h2>A conversation<br/><em>about fit.</em></h2><p>This project is still in development. The business case describes the problem and direction; the application and source are not yet available for release.</p><p>We can discuss your needs, alternatives, and the responsibilities involved in a future implementation.</p><a class="text-link" href={'/contact/?product='+encodeURIComponent(p.name)}>Discuss {p.name} ↗</a></section><CTA/>
+<article class="business-article" aria-labelledby="business-title">
+  <header>
+    <a href="/products/" class="back-link">← All products</a>
+    <span class="eyebrow">A PRODUCT BY VORTIQUEST / THE BUSINESS CASE</span>
+    <h1 id="business-title">{p.name}<span class="serif-period">.</span></h1>
+    <p class="business-deck">{p.slug === 'vorticause' ? 'A nonprofit platform built around relationships and mission.' : p.summary}</p>
+    {p.description.split('\n\n').map(paragraph => <p>{paragraph}</p>)}
+  </header>
+  {sections.map(section => <><hr/><section><h2>{section.heading}</h2>{section.paragraphs.map(paragraph => <p>{paragraph}</p>)}{section.items && <ul>{section.items.map(item => <li>{item}</li>)}</ul>}{section.closing && <p>{section.closing}</p>}</section></>)}
+  {p.slug !== 'vorticause' && <><hr/><section><h2>What it helps you do</h2>{p.verified ? <ul>{p.capabilities.map(item => <li>{item}</li>)}</ul> : <p>Product details are being prepared. We’ll share more about {p.name}’s workflows and capabilities as its public introduction develops.</p>}{platformNote && <p>{platformNote}</p>}</section></>}
+  <hr/>
+  <section><h2>Who it fits</h2><p>{p.audience}</p></section>
+  <hr/>
+  <section class="business-contact"><h2>Discuss {p.name}</h2><p>Tell us about your organization and the work you want to make easier. We can discuss fit, alternatives, and the responsibilities involved.</p><a class="text-link" href={'/contact/?product='+encodeURIComponent(p.name)}>Discuss the fit <span aria-hidden="true">↗</span></a></section>
+</article>
+<CTA/>
 </Layout>

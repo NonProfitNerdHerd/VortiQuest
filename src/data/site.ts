@@ -61,24 +61,101 @@ export const products: Product[] = [
     capabilities: ['Manage donor relationships and shared organizational information.', 'Coordinate work across national, regional, and local teams.', 'Give administrators, volunteers, and donors appropriate access.', 'Use mobile-friendly workflows wherever the work happens.', 'Connect relationship management with publishing and task coordination through VortiPress and VortiTask.', 'Adapt the platform as an organization’s needs change.'],
     audience: 'Nonprofits of different sizes, from local volunteer-led groups to organizations with regional and national teams. It is especially suited to organizations that want control over their software and have someone to manage deployment—or prefer optional hosting and support.',
     businessCase: [
-      { heading: 'When the database starts competing with the mission', paragraphs: [
-        'One nonprofit was spending thousands of dollars a year on its donor management system. It needed a dependable way to maintain relationships, share information, and support its mission. Instead, the cost of maintaining its database had become a significant operational concern.',
-        'Pricing tied to database growth created an uncomfortable question: which relationships could the organization afford to keep? Removing people to control software costs worked against the purpose of building a lasting community.',
-      ] },
-      { heading: 'Open source helped—but the fit still mattered', paragraphs: [
-        'The organization explored established open-source alternatives. Those offered valuable nonprofit features and greater control over the software, but the options it evaluated introduced other difficulties: interfaces that felt dated, complex configuration, and workflows that required more technical effort than the team could sustain.',
-        'Open source alone did not solve the usability and maintenance problem. The organization needed a system its people could work with confidently and its technical support could maintain realistically.',
-      ] },
-      { heading: 'A platform built around how nonprofits work', paragraphs: [
-        'VortiCause brings donor relationships and organizational knowledge together with mobile-friendly workflows and access controls suited to national, regional, and local operations.',
-        'Administrators, volunteers, and donors need different levels of access. The platform supports those distinctions so teams can share useful information while limiting access according to responsibility.',
-        'Connections with VortiPress and VortiTask bring publishing and task coordination closer to the relationship database, making information easier to carry into the work it supports.',
-      ] },
-      { heading: 'Adaptability without a fee for every relationship', paragraphs: [
-        'The self-hosted release will carry no software license or per-contact fee. Organizations can use their own technical support or choose optional paid hosting and assistance.',
-        'An adaptable codebase also creates room for carefully reviewed AI-assisted development. Organizations can improve workflows as needs change, while keeping testing, permissions, and protection of donor information part of that work.',
-      ] },
-      { heading: 'What success means', paragraphs: ['Success means less time managing software costs and disconnected tools, and more time maintaining relationships and delivering the mission. These are the outcomes VortiCause is designed to support; measured results will be shared when available.'] },
+      {
+        "heading": "When keeping relationships becomes a budget decision",
+        "paragraphs": [
+          "One nonprofit was spending thousands of dollars a year on its donor management system. It needed a dependable way to maintain relationships, share information, and support its mission. Instead, maintaining the database had become a significant operational expense.",
+          "Pricing tied to database growth created an uncomfortable question: which relationships could the organization afford to keep? Removing people to control software costs worked against the purpose of building a lasting community.",
+          "The organization explored established open-source alternatives. They offered valuable nonprofit features and more control, but the options it evaluated brought interfaces that felt dated, complex configuration, and workflows that demanded more technical effort than the team could sustain. It needed both ownership and a system people could work with confidently."
+        ]
+      },
+      {
+        "heading": "A shared understanding of every relationship",
+        "paragraphs": [
+          "A person may be a donor, a volunteer, an event participant, and a member at different points in their relationship with an organization. VortiCause brings those connections together so the next conversation can build on what the organization already knows.",
+          "Teams can manage donor relationships and shared organizational information without relying on one person’s inbox or memory."
+        ],
+        "items": [
+          "Keep donor and volunteer records connected to relationship history and notes.",
+          "Record communication preferences alongside the context for future outreach.",
+          "Share useful organizational knowledge with the people authorized to use it."
+        ],
+        "closing": "The result is a more complete view of the relationship: who someone is, how they participate, and what the team needs to follow through on."
+      },
+      {
+        "heading": "Fundraising beyond recording a donation",
+        "paragraphs": [
+          "A contribution is part of a relationship, not the end of a transaction. VortiCause connects fundraising activity with the supporter’s history and the work that follows."
+        ],
+        "items": [
+          "Record contributions and review giving history.",
+          "Track recurring commitments and campaign activity.",
+          "Connect acknowledgments and follow-up with the relevant supporter record."
+        ],
+        "closing": "That context helps a team recognize continued support, understand campaign participation, and make its next communication relevant."
+      },
+      {
+        "heading": "Volunteer work that stays connected",
+        "paragraphs": [
+          "Volunteers need clear responsibilities and a practical way to stay involved. Coordinators need to understand where help is available and what has already happened. VortiCause connects that information to the same relationship records used across the organization."
+        ],
+        "items": [
+          "Maintain volunteer interests and availability.",
+          "Coordinate assignments and participation across teams.",
+          "Keep the history of someone’s involvement available for future planning."
+        ],
+        "closing": "Mobile-friendly workflows help people use that context where the work happens, rather than waiting to return to a desk or reconcile a separate spreadsheet."
+      },
+      {
+        "heading": "Thank-yous and engagement that do not fall through the cracks",
+        "paragraphs": [
+          "A timely thank-you matters. So does remembering to welcome a new volunteer, follow up on a conversation, or reconnect after an event. VortiCause supports workflows for acknowledgments, welcome messages, reminders, and assigned follow-up.",
+          "An illustrative contribution workflow connects these steps:"
+        ],
+        "items": [
+          "Record the contribution against the supporter’s relationship history.",
+          "Prepare an acknowledgment using the relevant context and communication preferences.",
+          "Assign follow-up so someone is responsible for the next step.",
+          "Keep subsequent interactions connected to the supporter’s history."
+        ],
+        "closing": "The purpose is consistent, thoughtful engagement. Shared workflows give people a way to see what needs attention and continue the conversation without losing its context."
+      },
+      {
+        "heading": "Events, memberships, and ongoing participation",
+        "paragraphs": [
+          "Community involvement extends beyond giving. Event registration, attendance, membership activity, and communications all help explain how someone participates in the mission.",
+          "VortiCause keeps these activities connected so teams can coordinate participation, follow up after an event, and maintain membership relationships with a fuller understanding of the people involved."
+        ]
+      },
+      {
+        "heading": "One organization, appropriate access",
+        "paragraphs": [
+          "National, regional, and local teams need to work together without every person having access to every record. VortiCause supports operations at those levels with permissions appropriate to people’s responsibilities."
+        ],
+        "items": [
+          "Administrators manage the organization’s information and access responsibilities.",
+          "Volunteers work with information appropriate to their assigned role.",
+          "Donors have access appropriate to their own involvement.",
+          "Teams use mobile-friendly workflows across national, regional, and local operations."
+        ],
+        "closing": "Access controls are part of responsible administration. Their value depends on thoughtful configuration, regular review, and ongoing protection of the information entrusted to the organization."
+      },
+      {
+        "heading": "Knowledge that leads to action",
+        "paragraphs": [
+          "Reports and shared information help teams understand participation, review fundraising activity, and decide where attention is needed. The aim is to make the organization’s knowledge useful in daily work.",
+          "Connections with VortiPress and VortiTask bring publishing and task coordination closer to donor and volunteer relationships. Information can support communication and follow-through without making each activity a separate administrative project."
+        ]
+      },
+      {
+        "heading": "Control over the platform and its costs",
+        "paragraphs": [
+          "VortiCause is built for open-source release. At release, self-hosting will carry no software license or per-contact fee. Organizations can use their own technical support or choose optional paid hosting and assistance.",
+          "Infrastructure, maintenance, and third-party services still have operating costs. The distinction is that keeping another relationship in the database does not create another software license charge.",
+          "An adaptable codebase creates room for carefully reviewed AI-assisted development as needs change. Testing, permissions, and protection of donor information remain part of that work.",
+          "Success means less time managing disconnected tools and software costs, and more time maintaining relationships and delivering the mission. These are the outcomes the platform supports; measured customer results will be shared when available."
+        ]
+      }
     ],
     image: { src: collaboration, alt: 'Two people discuss work together at a laptop on a shared table.', credit: 'Kaboompics / Pexels', position: '50% 50%' },
   },
