@@ -28,21 +28,6 @@ export interface Product {
 }
 export const products: Product[] = [
   {
-    slug: 'vortiquest', name: 'VortiQuest', category: 'Intentional watching',
-    summary: 'Less algorithm. More of what you came to learn.',
-    description: 'An organized media inbox for the YouTube creators, podcasts, and live sources you choose. Follow the content you care about, keep it organized, and catch up on your terms.',
-    color: 'cloud', mark: 'play', repository: '', verified: true,
-    problem: 'You open YouTube to learn something. A few recommendations later, the lesson has become a detour. The creators you chose can get lost in a feed built around what to show you next.',
-    rationaleTitle: 'Why we built it',
-    rationale: 'Our first application started with a simple question from a user: how do I learn from YouTube when the algorithm keeps giving me things I don’t want? We built a separate subscription inbox around the sources people choose, so learning can be intentional again.',
-    personality: 'Your watchlist shouldn’t need a project manager.',
-    capabilities: ['Follow chosen YouTube channels, podcasts, and live sources in one subscription inbox.', 'Organize with categories, watchlists, and snooze.', 'Track watched and in-progress content so you know where to pick up.'],
-    audience: 'Curious people who use video and podcasts to learn, and want to keep up with chosen sources without chasing a recommendation feed.',
-    publicUrl: 'https://app.vorti.quest/',
-    platformNote: 'Available on the web and Android with a shared account. Live multi-view is a web-only workspace. Discover lets you find new channels and podcasts when you choose.',
-    image: { src: learning, alt: 'A person wearing headphones takes notes while studying at a laptop.', credit: 'Pavel Danilyuk / Pexels', position: '50% 58%' },
-  },
-  {
     slug: 'vortiblog', name: 'VortiBlog', category: 'Publishing',
     summary: 'Make room for what you have to say.',
     description: 'Our publishing project, with a closer look at its product story and implementation options being prepared. Start a conversation about what you want to publish and the tools that fit your work.',
@@ -66,6 +51,20 @@ export const products: Product[] = [
     capabilities: ['Visually edit posts, pages, reusable content types, and templates.', 'Coordinate projects, boards, tasks, and team collaboration.', 'Manage forms and event calendars alongside your website, with structured content and APIs.'],
     audience: 'Organizations evaluating a shared platform for publishing content and coordinating team workflows.',
     image: { src: collaboration, alt: 'Two people discuss work together at a laptop on a shared table.', credit: 'Kaboompics / Pexels', position: '50% 50%' },
+  },
+  {
+    slug: 'vortiquest', name: 'VortiQuest', category: 'Intentional watching',
+    summary: 'Less algorithm. More of what you came to learn.',
+    description: 'An organized media inbox for the YouTube creators, podcasts, and live sources you choose. Follow the content you care about, keep it organized, and catch up on your terms.',
+    color: 'cloud', mark: 'play', repository: '', verified: true,
+    problem: 'You open YouTube to learn something. A few recommendations later, the lesson has become a detour. The creators you chose can get lost in a feed built around what to show you next.',
+    rationaleTitle: 'Why we built it',
+    rationale: 'Our first application started with a simple question from a user: how do I learn from YouTube when the algorithm keeps giving me things I don’t want? We built a separate subscription inbox around the sources people choose, so learning can be intentional again.',
+    personality: 'Your watchlist shouldn’t need a project manager.',
+    capabilities: ['Follow chosen YouTube channels, podcasts, and live sources in one subscription inbox.', 'Organize with categories, watchlists, and snooze.', 'Track watched and in-progress content so you know where to pick up.'],
+    audience: 'Curious people who use video and podcasts to learn, and want to keep up with chosen sources without chasing a recommendation feed.',
+    platformNote: 'In development for web and Android with a shared account. Live multi-view is a web-only workspace. Discover lets you find new channels and podcasts when you choose.',
+    image: { src: learning, alt: 'A person wearing headphones takes notes while studying at a laptop.', credit: 'Pavel Danilyuk / Pexels', position: '50% 58%' },
   },
 ];
 export interface ServiceItem { title: string; description: string }

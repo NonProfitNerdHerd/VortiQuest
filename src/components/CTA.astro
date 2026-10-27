@@ -1,1 +1,14 @@
-<section class="cta section container"><div><span class="eyebrow">GOOD THINGS START WITH A CONVERSATION</span><h2>What’s on<br/>your <em>mind?</em></h2></div><div class="cta-side"><p>You don’t need to know which technology you need. Start by telling us what’s getting in the way.</p><a href="/contact/" class="button light">Let’s talk about your needs <span aria-hidden="true">↗</span></a></div></section>
+---
+import { Image } from 'astro:assets';
+import collaboration from '../assets/collaboration.jpg';
+---
+<section class="contact-band">
+  <div class="container contact-band-inner"><div class="contact-band-copy">
+    <span class="eyebrow">GOOD THINGS START WITH A CONVERSATION</span>
+    <h2>What’s on<br/>your <em>mind?</em></h2>
+    <p>You don’t need to know which technology you need. Start by telling us what’s getting in the way.</p>
+    <a href="/contact/" class="button light">Let’s talk about your needs <span aria-hidden="true">↗</span></a>
+  </div></div>
+  <figure class="contact-band-photo"><Image src={collaboration} widths={[480, 800, 1200, 1600, 2000]} sizes="(max-width: 800px) 100vw, 45vw" alt="Two people discussing work together at a laptop on a shared table." loading="lazy" format="webp" quality={82}/></figure>
+  <div class="container contact-band-credit">Illustrative photography · Kaboompics / Pexels</div>
+</section>

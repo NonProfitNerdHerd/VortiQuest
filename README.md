@@ -86,7 +86,7 @@ Client interests lead the recommendations: buying SaaS, connecting existing tool
 
 ## Product business cases and navigation
 
-The header stays visible while scrolling, with a solid background, anchor offsets, and an Escape-to-close mobile menu. Product case content and photos live in the typed product data. Products and detail pages share the same narrative component: problem, rationale, capabilities, audience, and next actions. VortiQuest is the media inbox at https://app.vorti.quest/; the company shares its name. The first-app origin was supplied by the owner; its feature claims were verified against the public product site. VortiBlog’s detailed story and feature set are still being prepared. Editorial images illustrate use contexts and are not application screenshots.
+The header stays visible while scrolling, with a solid background, anchor offsets, and an Escape-to-close mobile menu. Product case content and photos live in the typed product data. Products and detail pages share the same narrative component: problem, rationale, capabilities, audience, and next actions. VortiQuest is the media inbox project; the company shares its name. All three projects are currently presented as in development, without application or repository links. Collection order is VortiBlog, VortiCause, then VortiQuest. VortiBlog’s detailed story and feature set are still being prepared. Editorial images illustrate use contexts and are not application screenshots.
 
 The old `/products/vorti-youtube-feeder/` route redirects permanently to `/products/vortiquest/` using Cloudflare `_redirects`, with and without a trailing slash. The legacy product inquiry name is normalized to VortiQuest. Astro preview does not emulate Cloudflare redirects; validate status and Location through Wrangler or the deployed preview.
 
@@ -105,3 +105,7 @@ The fixed header reserves its expanded height (110px desktop, 85px at 800px and 
 The Blog menu opens `/blog/`. Topics are managed in `src/data/topics.ts`, and Markdown articles live in `src/content/blog/`. Read [the authoring guide](docs/blog-authoring.md) and copy [the article template](docs/article-template.md) to start a draft. `npm run dev` includes drafts locally; builds and the public preview Worker exclude them before rendering and asset registration. The initial public archive is intentionally empty.
 
 Run `npm run test:blog-build` for isolated publication/unpublication and draft-asset checks, alongside the normal build/tests. It creates a temporary project and never publishes fixture articles. The CI workflow includes this check.
+
+## Services and contact bands
+
+The Services capabilities introduction uses a mist-blue edge-to-edge band with workspace photography. The three service groups below it use the normal light page background. The partnership note follows with compact spacing. The shared contact section uses a navy band and collaboration photography on every page where it appears. Photos blend into the solid copy background on the left; at 800px and below, they stack beneath the copy with a top-edge gradient. Existing opening heroes remain independent.

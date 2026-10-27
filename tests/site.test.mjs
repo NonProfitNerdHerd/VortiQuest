@@ -44,10 +44,11 @@ test('contact route uses the supplied business email and has no pretend form', (
   assert.doesNotMatch(html, /<form\b/);
   assert.match(html, /role="status"/);
 });
-test('product links are honest placeholders until configured', () => {
+test('unfinished products retain business cases without release links', () => {
   for (const slug of ['vorticause','vortiblog','vortiquest']) {
     const html = readFileSync(join(root, `products/${slug}/index.html`), 'utf8');
-    assert.match(html, /Add Link/);
+    assert.match(html, /In development/);
+    assert.doesNotMatch(html, /Product website|GitHub repository|View on GitHub|href="https:\/\/app\.vorti\.quest/);
     assert.match(html, /Illustrative photograph/);
     assert.match(html, /contact\/\?product=/);
     assert.doesNotMatch(html, /href="#"/);
@@ -64,7 +65,7 @@ test('renamed product has a canonical route and permanent legacy redirects', () 
   assert.match(redirects, /^\/products\/vorti-youtube-feeder\/ \/products\/vortiquest\/ 301$/m);
   assert.match(redirects, /^\/products\/vorti-youtube-feeder \/products\/vortiquest\/ 301$/m);
   const html = readFileSync(join(root, 'products/vortiquest/index.html'), 'utf8');
-  assert.match(html, /href="https:\/\/app\.vorti\.quest\/"/);
+  assert.doesNotMatch(html, /href="https:\/\/app\.vorti\.quest\/"/);
   const sitemap = readFileSync(join(root, 'sitemap-0.xml'), 'utf8');
   assert.match(sitemap, /\/products\/vortiquest\//);
   assert.doesNotMatch(sitemap, /vorti-youtube-feeder/);
@@ -76,4 +77,20 @@ test('the deployed blog supports an empty state and excludes the sample draft', 
  assert.doesNotMatch(html,/This is a sample draft for local editorial review/);
  assert.equal(existsSync(join(root,'blog/sample-draft/index.html')),false);
  assert.doesNotMatch(readFileSync(join(root,'sitemap-0.xml'),'utf8'),/sample-draft/);
+});
+
+test('product listings follow the agreed order and retain internal case links', () => {
+ const slugs = ['vortiblog', 'vorticause', 'vortiquest'];
+ const home = readFileSync(join(root, 'index.html'), 'utf8');
+ const collection = readFileSync(join(root, 'products/index.html'), 'utf8');
+ for (const html of [home, collection]) {
+   const positions = slugs.map(slug => html.indexOf('href="/products/' + slug + '/"'));
+   assert.ok(positions.every(position => position >= 0));
+   assert.ok(positions[0] < positions[1] && positions[1] < positions[2]);
+ }
+ const anchors = slugs.map(slug => collection.indexOf('href="#' + slug + '"'));
+ assert.ok(anchors[0] >= 0 && anchors[0] < anchors[1] && anchors[1] < anchors[2]);
+ for (const page of pages) {
+   assert.doesNotMatch(readFileSync(join(root, page), 'utf8'), /href="https:\/\/app\.vorti\.quest/);
+ }
 });
