@@ -3,11 +3,12 @@ import Layout from '../../layouts/Layout.astro';
 import CTA from '../../components/CTA.astro';
 import { Content as VortiPressArticle, frontmatter as vortiPressArticle } from '../../data/business-cases/vortipress.md';
 import { Content as VortiCauseArticle, frontmatter as vortiCauseArticle } from '../../data/business-cases/vorticause.md';
+import { Content as VortiTaskArticle, frontmatter as vortiTaskArticle } from '../../data/business-cases/vortitask.md';
 import { products } from '../../data/site';
 import type { BusinessCaseSection } from '../../data/site';
 export function getStaticPaths() { return products.map(product => ({ params: { slug: product.slug }, props: { product } })); }
 const { product: p } = Astro.props;
-const editorial = p.slug === 'vortipress' ? { Content: VortiPressArticle, title: vortiPressArticle.title, description: vortiPressArticle.description } : p.slug === 'vorticause' ? { Content: VortiCauseArticle, title: vortiCauseArticle.title, description: vortiCauseArticle.description } : undefined;
+const editorial = p.slug === 'vortipress' ? { Content: VortiPressArticle, title: vortiPressArticle.title, description: vortiPressArticle.description } : p.slug === 'vorticause' ? { Content: VortiCauseArticle, title: vortiCauseArticle.title, description: vortiCauseArticle.description } : p.slug === 'vortitask' ? { Content: VortiTaskArticle, title: vortiTaskArticle.title, description: vortiTaskArticle.description } : undefined;
 const EditorialContent = editorial?.Content;
 const sections: BusinessCaseSection[] = p.businessCase ?? [
   { heading: 'The problem', paragraphs: p.problem.split('\n\n') },

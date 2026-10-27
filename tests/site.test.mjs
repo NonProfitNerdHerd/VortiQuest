@@ -123,9 +123,12 @@ test('VortiPress replaces VortiBlog while preserving legacy routes and anchors',
 });
 
 
-test('VortiTask has a discoverable placeholder and contact inquiry support', () => {
+test('VortiTask has its supplied business case and contact inquiry support', () => {
  const html = readFileSync(join(root, 'products/vortitask/index.html'), 'utf8');
- assert.match(html, /Product details are being prepared/);
+ assert.match(html, /Your team has work to do. Finding the assignment shouldn’t be the first task./);
+ assert.match(html, /<strong>Tasks created directly in VortiPress:<\/strong>/);
+ assert.match(html, /No per-user monthly software subscription/);
+ assert.doesNotMatch(html, /Product details are being prepared|Who it fits|What it helps you do|VortiTasks/);
  assert.match(html, /contact\/\?product=VortiTask/);
 
  assert.match(readFileSync(join(root, 'sitemap-0.xml'), 'utf8'), /\/products\/vortitask\//);
