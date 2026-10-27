@@ -107,10 +107,14 @@ test('VortiPress replaces VortiBlog while preserving legacy routes and anchors',
  const detail=readFileSync(join(root,'products/vortipress/index.html'),'utf8');
  const collection=readFileSync(join(root,'products/index.html'),'utf8');
  assert.match(detail,/rel="canonical" href="https:\/\/vorti.quest\/products\/vortipress\/"/);
- assert.match(detail,/They needed to publish. They inherited a maintenance job./);
+ assert.match(detail,/Your nonprofit has a mission. Babysitting a website probably isn’t it./);
+ assert.doesNotMatch(detail,/They needed to publish. They inherited a maintenance job.|Who it fits|What it helps you do/);
  assert.doesNotMatch(collection,/They needed to publish. They inherited a maintenance job./);
  assert.match(collection,/id="vortiblog"/);
- assert.match(detail,/Publish blog posts, news, and frequently updated website content./);
+ assert.match(detail,/<strong>Familiar block editing:<\/strong>/);
+ assert.match(detail,/intranet content, and extranet access/);
+ assert.match(detail,/href="\/contact\/\?product=VortiPress"/);
+ assert.match(detail,/php.net\/archive\/2026.php#2026-10-21-5/);
  assert.doesNotMatch(detail,/PRODUCT DETAILS BEING PREPARED/);
  const sitemap=readFileSync(join(root,'sitemap-0.xml'),'utf8');
  assert.match(sitemap,/\/products\/vortipress\//);

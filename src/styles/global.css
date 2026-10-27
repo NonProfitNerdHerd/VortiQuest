@@ -426,3 +426,9 @@ main :where(section,article,figure,div,aside),.footer-top>*{min-width:0}
 .product-intro .product-status{margin-top:16px}
 @media(max-width:800px){.product-intro{padding-block:40px}.product-intro-grid{grid-template-columns:1fr;gap:28px}}
 @media(max-width:580px){.product-intro .case-actions>.button{width:100%}}
+
+.business-article .business-editorial-title{font-size:clamp(2.5rem,4.5vw,4.5rem);line-height:1.12}
+.business-editorial{margin-top:28px}
+.business-editorial a{text-decoration:underline;text-underline-offset:4px}
+.business-editorial a:hover{color:var(--blue)}
+.business-editorial>p:last-child{margin-top:32px;font-weight:600}

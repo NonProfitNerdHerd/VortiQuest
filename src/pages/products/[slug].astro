@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CTA from '../../components/CTA.astro';
+import { Content as VortiPressArticle, frontmatter as vortiPressArticle } from '../../data/business-cases/vortipress.md';
 import { products } from '../../data/site';
 import type { BusinessCaseSection } from '../../data/site';
 export function getStaticPaths() { return products.map(product => ({ params: { slug: product.slug }, props: { product } })); }
@@ -11,8 +12,16 @@ const sections: BusinessCaseSection[] = p.businessCase ?? [
 ];
 const platformNote = p.platformNote?.replace(/^In development for /, 'The platform approach includes ');
 ---
-<Layout title={p.name+' — The business case'} description={p.description}>
+<Layout title={p.name+' — The business case'} description={p.slug === 'vortipress' ? vortiPressArticle.description : p.description}>
 <article class="business-article container" aria-labelledby="business-title">
+  {p.slug === 'vortipress' ? <>
+    <header>
+      <a href="/products/" class="back-link">← All products</a>
+      <span class="eyebrow">VORTIPRESS / THE BUSINESS CASE</span>
+      <h1 id="business-title" class="business-editorial-title">{vortiPressArticle.title}</h1>
+    </header>
+    <div class="business-editorial"><VortiPressArticle/></div>
+  </> : <>
   <header>
     <a href="/products/" class="back-link">← All products</a>
     <span class="eyebrow">A PRODUCT BY VORTIQUEST / THE BUSINESS CASE</span>
@@ -26,6 +35,7 @@ const platformNote = p.platformNote?.replace(/^In development for /, 'The platfo
   <section><h2>Who it fits</h2><p>{p.audience}</p></section>
   <hr/>
   <section class="business-contact"><h2>Discuss {p.name}</h2><p>Tell us about your organization and the work you want to make easier. We can discuss fit, alternatives, and the responsibilities involved.</p><a class="text-link" href={'/contact/?product='+encodeURIComponent(p.name)}>Discuss the fit <span aria-hidden="true">↗</span></a></section>
+  </>}
 </article>
 <CTA/>
 </Layout>
