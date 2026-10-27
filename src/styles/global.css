@@ -403,7 +403,7 @@ main :where(section,article,figure,div,aside),.footer-top>*{min-width:0}
 .product-identity .art-checklist{width:55px;height:76px;padding:9px;box-shadow:4px 4px 0 var(--art-shadow)}
 
 /* Product business cases are reading-focused articles, separate from collection cards. */
-.business-article{width:min(760px,calc(100% - 80px));margin-inline:auto;padding-block:64px 80px}
+.business-article{padding-block:64px 80px}
 .business-article header>.eyebrow{margin-bottom:24px}
 .business-article h1{font-size:clamp(3rem,6vw,5rem);overflow-wrap:anywhere}
 .business-article .business-deck{font:clamp(1.8rem,3vw,2.4rem)/1.25 var(--serif);color:var(--ink);margin-top:24px}
@@ -413,7 +413,7 @@ main :where(section,article,figure,div,aside),.footer-top>*{min-width:0}
 .business-article li+li{margin-top:10px}
 .business-article hr{border:0;border-top:1px solid var(--line);margin-block:36px}
 .business-contact .text-link{margin-top:20px}
-@media(max-width:580px){.business-article{width:calc(100% - 40px);padding-block:40px 56px}.business-article hr{margin-block:28px}.business-article .back-link{margin-bottom:28px}}
+@media(max-width:580px){.business-article{padding-block:40px 56px}.business-article hr{margin-block:28px}.business-article .back-link{margin-bottom:28px}}
 
 /* Collection introductions: copy and actions left, illustrative photography right. */
 .product-intro{position:relative;padding-block:56px;border-top:1px solid var(--line);scroll-margin-top:calc(var(--header-height,110px) + 24px)}

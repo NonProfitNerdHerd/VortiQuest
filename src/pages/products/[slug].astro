@@ -12,7 +12,7 @@ const sections: BusinessCaseSection[] = p.businessCase ?? [
 const platformNote = p.platformNote?.replace(/^In development for /, 'The platform approach includes ');
 ---
 <Layout title={p.name+' — The business case'} description={p.description}>
-<article class="business-article" aria-labelledby="business-title">
+<article class="business-article container" aria-labelledby="business-title">
   <header>
     <a href="/products/" class="back-link">← All products</a>
     <span class="eyebrow">A PRODUCT BY VORTIQUEST / THE BUSINESS CASE</span>

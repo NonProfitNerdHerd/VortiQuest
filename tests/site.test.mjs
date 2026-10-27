@@ -48,9 +48,9 @@ test('unfinished products retain business cases without release links', () => {
   for (const slug of ['vortipress','vorticause','vortitask','vortiquest']) {
     const html = readFileSync(join(root, `products/${slug}/index.html`), 'utf8');
     assert.doesNotMatch(html, /in development|product-development|product-status/i);
-    assert.match(html, /<article class="business-article"/);
+    assert.match(html, /<article class="business-article container"/);
     assert.match(html, /<hr/);
-    const article = html.match(/<article class="business-article"[\s\S]*?<\/article>/)?.[0];
+    const article = html.match(/<article class="business-article container"[\s\S]*?<\/article>/)?.[0];
     assert.ok(article);
     assert.doesNotMatch(article, /<img|product-visual|case-main|case-preparing/);
     assert.doesNotMatch(html, /Product website|GitHub repository|View on GitHub|href="https:\/\/app\.vorti\.quest/);
