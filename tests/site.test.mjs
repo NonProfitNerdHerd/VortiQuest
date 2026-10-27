@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 const root = resolve('dist');
-const requiredPages = ['index.html','services/index.html','products/index.html','products/vortiquest/index.html','products/vortipress/index.html','products/vorticause/index.html','products/vortitask/index.html','about/index.html','contact/index.html','privacy/index.html','404.html','blog/index.html',...['technology-decisions','custom-development','integrations','ai-automation','hosting-support'].map(id => `blog/topics/${id}/index.html`)];
+const requiredPages = ['index.html','services/index.html','products/index.html','products/vortiquest/index.html','products/vortipress/index.html','products/vorticause/index.html','products/vortitask/index.html','products/vortichaser/index.html','about/index.html','contact/index.html','privacy/index.html','404.html','blog/index.html',...['technology-decisions','custom-development','integrations','ai-automation','hosting-support'].map(id => `blog/topics/${id}/index.html`)];
 
 const pages = [...new Set([...requiredPages, ...readdirSync(root, { recursive: true }).filter(file => file.endsWith('.html'))])];
 
@@ -45,7 +45,7 @@ test('contact route uses the supplied business email and has no pretend form', (
   assert.match(html, /role="status"/);
 });
 test('unfinished products retain business cases without release links', () => {
-  for (const slug of ['vortipress','vorticause','vortitask','vortiquest']) {
+  for (const slug of ['vortipress','vorticause','vortitask','vortichaser','vortiquest']) {
     const html = readFileSync(join(root, `products/${slug}/index.html`), 'utf8');
     assert.doesNotMatch(html, /in development|product-development|product-status/i);
     assert.match(html, /<article class="business-article container"/);
@@ -85,7 +85,7 @@ test('the deployed blog supports an empty state and excludes the sample draft', 
 });
 
 test('product listings follow the agreed order and retain internal case links', () => {
- const slugs = ['vortipress', 'vorticause', 'vortitask', 'vortiquest'];
+ const slugs = ['vortipress', 'vorticause', 'vortitask', 'vortichaser', 'vortiquest'];
  const home = readFileSync(join(root, 'index.html'), 'utf8');
  const collection = readFileSync(join(root, 'products/index.html'), 'utf8');
  for (const html of [home, collection]) {
@@ -152,7 +152,7 @@ test('VortiCause presents donor operations and an anonymous detail-only case', (
 test('collection retains development notices and prominent business-case buttons', () => {
  const html = readFileSync(join(root, 'products/index.html'), 'utf8');
  assert.match(html, /In development/);
- for (const slug of ['vortipress', 'vorticause', 'vortitask', 'vortiquest']) {
+ for (const slug of ['vortipress', 'vorticause', 'vortitask', 'vortichaser', 'vortiquest']) {
    assert.ok(html.includes('class="button" href="/products/' + slug + '/">Read the business case'));
  }
 });
@@ -167,8 +167,8 @@ test('VortiCause article includes engagement, volunteer, and participation workf
 test('collection introduces each product without duplicating its business case', () => {
  const html = readFileSync(join(root, 'products/index.html'), 'utf8');
  const introductions = [...html.matchAll(/<section class="product-intro"[\s\S]*?<\/section>/g)].map(match => match[0]);
- assert.equal(introductions.length, 4);
- for (const [i, slug] of ['vortipress','vorticause','vortitask','vortiquest'].entries()) {
+ assert.equal(introductions.length, 5);
+ for (const [i, slug] of ['vortipress','vorticause','vortitask','vortichaser','vortiquest'].entries()) {
    const section = introductions[i];
    assert.ok(section.includes('id="' + slug + '"'));
    assert.match(section, /class="case-tagline"/);
@@ -182,4 +182,15 @@ test('collection introduces each product without duplicating its business case',
    assert.ok(section.indexOf('Read the business case') < section.indexOf('<figure'));
  }
  assert.match(html, /id="vortiblog"/);
+});
+
+
+test('VortiChaser has the supplied business case and an internal product inquiry', () => {
+ const html = readFileSync(join(root, 'products/vortichaser/index.html'), 'utf8');
+ assert.match(html, /Chase the weather. Bring the studio. Leave the subscription pile behind./);
+ assert.match(html, /paid platform without an open-source edition/);
+ assert.match(html, /no more than 10% of subscription revenue/);
+ assert.match(html, /Whenever we raise subscription prices, we will document/);
+ assert.match(html, /href="\/contact\/\?product=VortiChaser"/);
+ assert.match(readFileSync(join(root, 'sitemap-0.xml'), 'utf8'), /\/products\/vortichaser\//);
 });

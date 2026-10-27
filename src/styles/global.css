@@ -432,3 +432,5 @@ main :where(section,article,figure,div,aside),.footer-top>*{min-width:0}
 .business-editorial a{text-decoration:underline;text-underline-offset:4px}
 .business-editorial a:hover{color:var(--blue)}
 .business-editorial>p:last-child{margin-top:32px;font-weight:600}
+
+.product-art.radar{background:var(--product-slate);color:var(--blue-hover)}.art-radar{width:180px;height:180px}.art-radar svg{width:100%;height:100%}.product-identity .art-radar{width:80px;height:80px}

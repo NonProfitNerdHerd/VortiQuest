@@ -3,6 +3,7 @@ import learning from '../assets/learning.jpg';
 import planning from '../assets/planning.jpg';
 import collaboration from '../assets/collaboration.jpg';
 import teamPlanning from '../assets/team-planning.jpg';
+import workspace from '../assets/workspace.jpg';
 
 export const site = {
   name: 'VortiQuest', email: 'support@vorti.quest',
@@ -73,6 +74,19 @@ export const products: Product[] = [
     capabilities: [],
     audience: 'Teams and organizations looking for a clearer way to coordinate everyday work.',
     image: { src: teamPlanning, alt: 'Two colleagues plan work together at a table.', credit: 'Alena Darmel / Pexels', position: '50% 50%' },
+  },
+  {
+    slug: 'vortichaser', name: 'VortiChaser', category: 'Weather & broadcasting',
+    summary: 'Chase the weather. Bring the studio.',
+    description: 'VortiChaser brings storm-chasing tools, native video streaming, custom widgets and overlays, weather learning, games, and a business directory into one connected platform. Organize your rig, prepare your broadcast, and keep learning between chase days.\n\nA paid platform built by people who chase, with transparent subscription pricing and a focus on reducing the work of connecting separate services. Continuity and recording remain areas of continuing development.',
+    color: 'slate', mark: 'radar', repository: '', verified: true,
+    problem: 'Chase equipment and broadcasting tools often grow into a collection of separately managed services, subscriptions, and configurations.',
+    rationaleTitle: 'The idea behind it',
+    rationale: 'Connect the rig, broadcast, overlays, learning, and community in one platform, with repeatable setups and clearly explained subscription pricing.',
+    personality: 'Bring the cameras and the curiosity.',
+    capabilities: ['Organize saved rigs, camera and audio mappings, scenes, and overlays.', 'Create custom widgets and manage native broadcasting with preview and health information.', 'Explore weather learning, games, community activities, and a business directory.'],
+    audience: 'Storm chasers, weather enthusiasts, families, and broadcasters who want a connected place to prepare, learn, and share.',
+    image: { src: workspace, alt: 'A laptop and notebook on a desk beside a window, illustrating preparation and planning.', credit: 'Darina Belonogova / Pexels', position: '50% 50%' },
   },
   {
     slug: 'vortiquest', name: 'VortiQuest', category: 'Intentional watching',

@@ -8,4 +8,5 @@ const { kind, large = false } = Astro.props;
   {kind === 'lines' && <><span class="art-page"><i></i><b>Aa.</b><i></i><i></i><i></i></span><span class="art-label">Make room for your ideas.</span></>}
   {kind === 'asterisk' && <><span class="art-flower">✳</span><span class="art-label">Good work, together.</span></>}
   {kind === 'checklist' && <><span class="art-checklist"><svg viewBox="0 0 100 130" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 22 7 7 13-16M40 22h52M5 58h18v18H5zM40 67h52M5 103h18v18H5zM40 112h40"/></svg></span><span class="art-label">One step forward.</span></>}
+  {kind === 'radar' && <><span class="art-radar"><svg viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="3"><circle cx="80" cy="80" r="65"/><circle cx="80" cy="80" r="42"/><circle cx="80" cy="80" r="19"/><path d="M80 15v130M15 80h130" opacity=".35"/><path d="M80 80 126 34" stroke-width="6"/><circle cx="48" cy="100" r="6" fill="currentColor" stroke="none"/></svg></span><span class="art-label">A clearer view of the chase.</span></>}
 </div>

@@ -9,8 +9,8 @@ import { site } from '../data/site';
 const action = document.querySelector<HTMLAnchorElement>('#email-action');
 const requestedProduct = new URLSearchParams(location.search).get('product');
 const product = requestedProduct === 'Vorti YouTube Feeder' ? 'VortiQuest' : requestedProduct === 'VortiBlog' ? 'VortiPress' : requestedProduct;
-const allowedProducts = ['VortiPress', 'VortiCause', 'VortiTask', 'VortiQuest'];
-if (action && product && allowedProducts.includes(product)) action.href = `mailto:support@vorti.quest?subject=${encodeURIComponent(`Hosting inquiry: ${product}`)}`;
+const allowedProducts = ['VortiPress', 'VortiCause', 'VortiTask', 'VortiChaser', 'VortiQuest'];
+if (action && product && allowedProducts.includes(product)) action.href = `mailto:support@vorti.quest?subject=${encodeURIComponent(`${product === 'VortiChaser' ? 'Product' : 'Hosting'} inquiry: ${product}`)}`;
 const copy = document.querySelector<HTMLButtonElement>('#copy-email');
 const feedback = document.querySelector('#copy-feedback');
 if (copy && navigator.clipboard) { copy.hidden = false; copy.addEventListener('click', async () => { try { await navigator.clipboard.writeText('support@vorti.quest'); if (feedback) feedback.textContent = 'Email address copied.'; } catch { if (feedback) feedback.textContent = 'Please select and copy the email address above.'; } }); }
