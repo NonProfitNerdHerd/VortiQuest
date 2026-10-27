@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 const root = resolve('dist');
-const requiredPages = ['index.html','services/index.html','products/index.html','products/vortiquest/index.html','products/vortipress/index.html','products/vorticause/index.html','about/index.html','contact/index.html','privacy/index.html','404.html','blog/index.html',...['technology-decisions','custom-development','integrations','ai-automation','hosting-support'].map(id => `blog/topics/${id}/index.html`)];
+const requiredPages = ['index.html','services/index.html','products/index.html','products/vortiquest/index.html','products/vortipress/index.html','products/vorticause/index.html','products/vortitask/index.html','about/index.html','contact/index.html','privacy/index.html','404.html','blog/index.html',...['technology-decisions','custom-development','integrations','ai-automation','hosting-support'].map(id => `blog/topics/${id}/index.html`)];
 
 const pages = [...new Set([...requiredPages, ...readdirSync(root, { recursive: true }).filter(file => file.endsWith('.html'))])];
 
@@ -45,7 +45,7 @@ test('contact route uses the supplied business email and has no pretend form', (
   assert.match(html, /role="status"/);
 });
 test('unfinished products retain business cases without release links', () => {
-  for (const slug of ['vorticause','vortipress','vortiquest']) {
+  for (const slug of ['vortipress','vorticause','vortitask','vortiquest']) {
     const html = readFileSync(join(root, `products/${slug}/index.html`), 'utf8');
     assert.match(html, /In development/);
     assert.doesNotMatch(html, /Product website|GitHub repository|View on GitHub|href="https:\/\/app\.vorti\.quest/);
@@ -80,16 +80,16 @@ test('the deployed blog supports an empty state and excludes the sample draft', 
 });
 
 test('product listings follow the agreed order and retain internal case links', () => {
- const slugs = ['vortipress', 'vorticause', 'vortiquest'];
+ const slugs = ['vortipress', 'vorticause', 'vortitask', 'vortiquest'];
  const home = readFileSync(join(root, 'index.html'), 'utf8');
  const collection = readFileSync(join(root, 'products/index.html'), 'utf8');
  for (const html of [home, collection]) {
    const positions = slugs.map(slug => html.indexOf('href="/products/' + slug + '/"'));
    assert.ok(positions.every(position => position >= 0));
-   assert.ok(positions[0] < positions[1] && positions[1] < positions[2]);
+   assert.ok(positions.every((position, i) => i === 0 || positions[i - 1] < position));
  }
  const anchors = slugs.map(slug => collection.indexOf('href="#' + slug + '"'));
- assert.ok(anchors[0] >= 0 && anchors[0] < anchors[1] && anchors[1] < anchors[2]);
+ assert.ok(anchors.every((position, i) => position >= 0 && (i === 0 || anchors[i - 1] < position)));
  for (const page of pages) {
    assert.doesNotMatch(readFileSync(join(root, page), 'utf8'), /href="https:\/\/app\.vorti\.quest/);
  }
@@ -111,4 +111,26 @@ test('VortiPress replaces VortiBlog while preserving legacy routes and anchors',
  assert.match(sitemap,/\/products\/vortipress\//);
  assert.doesNotMatch(sitemap,/vortiblog/);
  for(const page of pages) assert.doesNotMatch(readFileSync(join(root,page),'utf8'),/VortiBlog|href="\/products\/vortiblog/);
+});
+
+
+test('VortiTask has a discoverable placeholder and contact inquiry support', () => {
+ const html = readFileSync(join(root, 'products/vortitask/index.html'), 'utf8');
+ assert.match(html, /PRODUCT DETAILS BEING PREPARED/);
+ assert.match(html, /contact\/\?product=VortiTask/);
+ assert.match(html, /Alena Darmel/);
+ assert.match(readFileSync(join(root, 'sitemap-0.xml'), 'utf8'), /\/products\/vortitask\//);
+ const contact = readFileSync(join(root, 'contact/index.html'), 'utf8');
+ const scripts = [...contact.matchAll(/<script[^>]+src="([^"]+)"/g)].map(([,src]) => readFileSync(join(root, src), 'utf8')).join('');
+ assert.match(scripts, /VortiTask/);
+});
+
+test('VortiCause presents donor operations and an anonymous detail-only case', () => {
+ const html = readFileSync(join(root, 'products/vorticause/index.html'), 'utf8');
+ assert.match(html, /Manage donor relationships/);
+ assert.match(html, /no software license or per-contact fee/);
+ assert.match(html, /national, regional, and local/);
+ assert.match(html, /When the database starts competing with the mission/);
+ assert.doesNotMatch(html, /Kindful|CiviCRM|A headless content management and collaboration platform/i);
+ assert.doesNotMatch(readFileSync(join(root, 'products/index.html'), 'utf8'), /When the database starts competing with the mission/);
 });

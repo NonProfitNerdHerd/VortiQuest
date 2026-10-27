@@ -7,4 +7,5 @@ const { kind, large = false } = Astro.props;
   {kind === 'play' && <><span class="art-orbit"></span><span class="art-disc"><svg viewBox="0 0 100 100"><path d="M40 29 71 50 40 71Z" fill="currentColor"/></svg></span><span class="art-label">A new perspective.</span></>}
   {kind === 'lines' && <><span class="art-page"><i></i><b>Aa.</b><i></i><i></i><i></i></span><span class="art-label">Make room for your ideas.</span></>}
   {kind === 'asterisk' && <><span class="art-flower">✳</span><span class="art-label">Good work, together.</span></>}
+  {kind === 'checklist' && <><span class="art-checklist"><svg viewBox="0 0 100 130" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 22 7 7 13-16M40 22h52M5 58h18v18H5zM40 67h52M5 103h18v18H5zM40 112h40"/></svg></span><span class="art-label">One step forward.</span></>}
 </div>

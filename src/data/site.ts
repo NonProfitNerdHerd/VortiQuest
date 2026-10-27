@@ -2,6 +2,7 @@ import type { ImageMetadata } from 'astro';
 import learning from '../assets/learning.jpg';
 import planning from '../assets/planning.jpg';
 import collaboration from '../assets/collaboration.jpg';
+import teamPlanning from '../assets/team-planning.jpg';
 
 export const site = {
   name: 'VortiQuest', email: 'support@vorti.quest',
@@ -49,17 +50,50 @@ export const products: Product[] = [
     image: { src: planning, alt: 'An overhead view of a bright workspace with a laptop, notebook, and someone working.', credit: 'Luna Lovegood / Pexels', position: '50% 50%' },
   },
   {
-    slug: 'vorticause', name: 'VortiCause', category: 'Content & collaboration',
-    summary: 'Bring the content and the work behind it together.',
-    description: 'A headless content management and collaboration platform. Editors get visual authoring, developers get structured content and APIs, and teams can manage the work alongside their website.',
+    slug: 'vorticause', name: 'VortiCause', category: 'Nonprofit relationships & operations',
+    summary: 'Your mission should grow without a price on every relationship.',
+    description: 'VortiCause brings donor relationships, organizational knowledge, and everyday nonprofit work into one adaptable platform. Built for open-source release, it combines mobile-friendly workflows with access controls for national, regional, and local teams.\n\nThe aim is straightforward: software that is easier to manage, designed around responsible access to information, and affordable to operate as your community grows.',
     color: 'slate', mark: 'asterisk', repository: '', verified: true,
-    problem: 'Publishing involves more than a page and a Publish button. There are tasks to coordinate, content to review, events to organize, and people who need to know what happens next.',
+    problem: 'A donor database should help an organization build relationships. When software costs rise with the size of its contact list, keeping people connected can become a budget decision.\n\nSmall nonprofits can spend thousands of dollars a year on systems that still require workarounds, separate tools, and considerable administration. That puts pressure on teams to remove contacts or narrow their outreach when their focus should be the mission.',
     rationaleTitle: 'The idea behind it',
-    rationale: 'VortiCause brings publishing and organizational work into the same platform. The aim is to give content and collaboration a shared home, with a familiar visual editing experience and structured delivery for developers.',
-    personality: 'Fewer places to ask, “Where did we put that?”',
-    capabilities: ['Visually edit posts, pages, reusable content types, and templates.', 'Coordinate projects, boards, tasks, and team collaboration.', 'Manage forms and event calendars alongside your website, with structured content and APIs.'],
-    audience: 'Organizations evaluating a shared platform for publishing content and coordinating team workflows.',
+    rationale: 'Give nonprofits control over their relationships, their information, and how their systems evolve.\n\nAt release, self-hosted VortiCause will have no software license or per-contact fee. Organizations with the technical capacity can deploy and maintain it themselves; hosting and support will be optional paid services. Infrastructure, maintenance, and any third-party services still have operating costs.\n\nIts adaptable foundation supports reviewed, AI-assisted development and connections with VortiPress and VortiTask, helping organizations improve workflows without starting over.',
+    personality: 'Keep relationships at the heart of your mission.',
+    capabilities: ['Manage donor relationships and shared organizational information.', 'Coordinate work across national, regional, and local teams.', 'Give administrators, volunteers, and donors appropriate access.', 'Use mobile-friendly workflows wherever the work happens.', 'Connect relationship management with publishing and task coordination through VortiPress and VortiTask.', 'Adapt the platform as an organization’s needs change.'],
+    audience: 'Nonprofits of different sizes, from local volunteer-led groups to organizations with regional and national teams. It is especially suited to organizations that want control over their software and have someone to manage deployment—or prefer optional hosting and support.',
+    businessCase: [
+      { heading: 'When the database starts competing with the mission', paragraphs: [
+        'One nonprofit was spending thousands of dollars a year on its donor management system. It needed a dependable way to maintain relationships, share information, and support its mission. Instead, the cost of maintaining its database had become a significant operational concern.',
+        'Pricing tied to database growth created an uncomfortable question: which relationships could the organization afford to keep? Removing people to control software costs worked against the purpose of building a lasting community.',
+      ] },
+      { heading: 'Open source helped—but the fit still mattered', paragraphs: [
+        'The organization explored established open-source alternatives. Those offered valuable nonprofit features and greater control over the software, but the options it evaluated introduced other difficulties: interfaces that felt dated, complex configuration, and workflows that required more technical effort than the team could sustain.',
+        'Open source alone did not solve the usability and maintenance problem. The organization needed a system its people could work with confidently and its technical support could maintain realistically.',
+      ] },
+      { heading: 'A platform built around how nonprofits work', paragraphs: [
+        'VortiCause brings donor relationships and organizational knowledge together with mobile-friendly workflows and access controls suited to national, regional, and local operations.',
+        'Administrators, volunteers, and donors need different levels of access. The platform supports those distinctions so teams can share useful information while limiting access according to responsibility.',
+        'Connections with VortiPress and VortiTask bring publishing and task coordination closer to the relationship database, making information easier to carry into the work it supports.',
+      ] },
+      { heading: 'Adaptability without a fee for every relationship', paragraphs: [
+        'The self-hosted release will carry no software license or per-contact fee. Organizations can use their own technical support or choose optional paid hosting and assistance.',
+        'An adaptable codebase also creates room for carefully reviewed AI-assisted development. Organizations can improve workflows as needs change, while keeping testing, permissions, and protection of donor information part of that work.',
+      ] },
+      { heading: 'What success means', paragraphs: ['Success means less time managing software costs and disconnected tools, and more time maintaining relationships and delivering the mission. These are the outcomes VortiCause is designed to support; measured results will be shared when available.'] },
+    ],
     image: { src: collaboration, alt: 'Two people discuss work together at a laptop on a shared table.', credit: 'Kaboompics / Pexels', position: '50% 50%' },
+  },
+  {
+    slug: 'vortitask', name: 'VortiTask', category: 'Tasks & teamwork',
+    summary: 'A clearer home for the work ahead.',
+    description: 'VortiTask is taking shape as a practical place to organize tasks, coordinate responsibilities, and keep shared work moving.',
+    color: 'cloud', mark: 'checklist', repository: '', verified: false,
+    problem: 'Work gets scattered across email, messages, spreadsheets, and individual to-do lists. It becomes difficult to see who owns the next step, what needs attention, and where decisions were recorded.',
+    rationaleTitle: 'The idea behind it',
+    rationale: 'Bring everyday coordination into a shared workspace that helps people understand their responsibilities and follow through together.',
+    personality: 'Make the next step easier to see.',
+    capabilities: [],
+    audience: 'Teams and organizations looking for a clearer way to coordinate everyday work.',
+    image: { src: teamPlanning, alt: 'Two colleagues plan work together at a table.', credit: 'Alena Darmel / Pexels', position: '50% 50%' },
   },
   {
     slug: 'vortiquest', name: 'VortiQuest', category: 'Intentional watching',

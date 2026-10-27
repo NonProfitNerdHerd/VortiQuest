@@ -37,8 +37,8 @@ Until `site.domainConfirmed` is true, pages are noindex and robots disallows ind
 ## Launch checklist
 
 1. Confirm domain and update `site.domainConfirmed`; set the production `SITE_URL` in Cloudflare.
-2. Add the GitHub account and three repository URLs, replacing **Add Link**. Verify licenses and setup documentation independently for each product.
-3. Confirm VortiQuest and VortiPress copy and capabilities. Set their `verified` flags only after review. The discovered `NonProfitNerdHerd/vorti-blog` README describes **VortiCause**, so do not automatically link it to VortiPress.
+2. When products are ready for release, configure the GitHub account and repository URLs and enable release actions. Verify licenses and setup documentation independently for each product.
+3. Review product copy and capabilities before release. VortiTask remains a placeholder with `verified: false`; do not invent a feature list.
 4. Replace clearly labeled product identity illustrations with real application screenshots and useful alt text/captions. Use responsive images through Astro's image component, with fixed dimensions and lazy loading below the fold. The current illustrations are native CSS/SVG; they do not impersonate application screens.
 5. Review the privacy notice.
 6. Review the included 1200×630 `public/social.png` social preview; its editable source is `public/social.svg`.
@@ -76,9 +76,7 @@ The Cloud & Ink direction and photography approach were selected by the owner. T
 
 ## Content provenance
 
-The business email was supplied directly. Product capabilities are based on the source below:
-
-- https://github.com/NonProfitNerdHerd/vorti-blog/blob/main/README.md (current VortiCause capabilities; roadmap claims excluded)
+The business email and current product positioning were supplied directly by the owner. The owner confirmed VortiCause donor management, mobile workflows, national/regional/local permissions, and VortiPress/VortiTask integrations as implemented. The anonymous nonprofit case is the owner’s account, not a measured benchmark. Self-hosting will have no software license or per-contact fee at release; infrastructure and maintenance still cost money, and paid hosting/support are optional. Earlier CMS-focused VortiCause material is superseded. Do not publish competitor names or promise security guarantees.
 
 ## Advisory positioning
 
@@ -86,7 +84,7 @@ Client interests lead the recommendations: buying SaaS, connecting existing tool
 
 ## Product business cases and navigation
 
-The header stays visible while scrolling, with a solid background, anchor offsets, and an Escape-to-close mobile menu. Product case content and photos live in the typed product data. Products and detail pages share the same narrative component: problem, rationale, capabilities, audience, and next actions. VortiQuest is the media inbox project; the company shares its name. All three projects are currently presented as in development, without application or repository links. Collection order is VortiPress, VortiCause, then VortiQuest. VortiPress’s capabilities were confirmed by the owner; its expanded business case appears only on the detail page. The product remains unreleased. Editorial images illustrate use contexts and are not application screenshots.
+The header stays visible while scrolling, with a solid background, anchor offsets, and an Escape-to-close mobile menu. Product case content and photos live in the typed product data. Products and detail pages share the same narrative component: problem, rationale, capabilities, audience, and next actions. VortiQuest is the media inbox project; the company shares its name. All four projects are currently presented as in development, without application or repository links. Collection order is VortiPress, VortiCause, VortiTask, then VortiQuest. Homepage cards use two columns on desktop/tablet and one on mobile. VortiTask uses placeholder copy, a checklist illustration, and licensed team-planning photography. VortiPress and VortiCause capabilities were confirmed by the owner; their expanded business cases appear only on detail pages. The product remains unreleased. Editorial images illustrate use contexts and are not application screenshots.
 
 The old `/products/vorti-youtube-feeder/` route redirects permanently to `/products/vortiquest/` using Cloudflare `_redirects`, with and without a trailing slash. The legacy product inquiry name is normalized to VortiQuest. Astro preview does not emulate Cloudflare redirects; validate status and Location through Wrangler or the deployed preview.
 

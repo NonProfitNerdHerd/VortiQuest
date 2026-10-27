@@ -9,7 +9,7 @@ import { site } from '../data/site';
 const action = document.querySelector<HTMLAnchorElement>('#email-action');
 const requestedProduct = new URLSearchParams(location.search).get('product');
 const product = requestedProduct === 'Vorti YouTube Feeder' ? 'VortiQuest' : requestedProduct === 'VortiBlog' ? 'VortiPress' : requestedProduct;
-const allowedProducts = ['VortiQuest', 'VortiPress', 'VortiCause'];
+const allowedProducts = ['VortiPress', 'VortiCause', 'VortiTask', 'VortiQuest'];
 if (action && product && allowedProducts.includes(product)) action.href = `mailto:support@vorti.quest?subject=${encodeURIComponent(`Hosting inquiry: ${product}`)}`;
 const copy = document.querySelector<HTMLButtonElement>('#copy-email');
 const feedback = document.querySelector('#copy-feedback');
