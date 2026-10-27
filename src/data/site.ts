@@ -18,7 +18,9 @@ export const advisory = {
     'Our success is measured by how well your technology serves you. Every recommendation should earn your trust, respect your resources, and move you toward the future you want to build.',
   ],
 };
+export interface BusinessCaseSection { heading: string; paragraphs: string[]; items?: string[]; closing?: string }
 export interface Product {
+  businessCase?: BusinessCaseSection[];
   slug: string; name: string; category: string; summary: string;
   description: string; color: string; mark: string; repository: string;
   capabilities: string[]; audience: string; verified: boolean;
@@ -28,15 +30,22 @@ export interface Product {
 }
 export const products: Product[] = [
   {
-    slug: 'vortiblog', name: 'VortiBlog', category: 'Publishing',
-    summary: 'Make room for what you have to say.',
-    description: 'Our publishing project, with a closer look at its product story and implementation options being prepared. Start a conversation about what you want to publish and the tools that fit your work.',
-    color: 'periwinkle', mark: 'lines', repository: '', verified: false,
-    problem: 'You have something useful to share. Choosing a publishing platform, understanding the setup, and deciding who will maintain it can become a project of their own.',
-    rationaleTitle: 'The idea behind it',
-    rationale: 'VortiBlog is the publishing project in our collection. We’re preparing its full business case and feature details; for now, we can help you explore your publishing needs and discuss whether it belongs on your shortlist.',
-    personality: 'Good ideas deserve a little breathing room.',
-    capabilities: [], audience: 'People and organizations considering how to publish their ideas and manage the work around them.',
+    slug: "vortipress",
+    name: "VortiPress",
+    category: "Publishing & content management",
+    summary: "Familiar publishing. A different foundation.",
+    description: "VortiPress is a headless alternative to WordPress, built on Payload and expanded to offer a familiar WordPress-style editing experience. It separates content management from the public website, giving people a flexible place to publish and developers room to extend it. The goal is straightforward: preserve the freedom to build, without making everyday publishing an ongoing administration project.",
+    color: "periwinkle",
+    mark: "lines",
+    repository: "",
+    verified: true,
+    problem: "A straightforward publishing website can become a complicated collection of themes, plugins, subscriptions, and maintenance tasks. Every additional dependency can introduce compatibility questions, update work, and performance overhead. For organizations with limited technical support, keeping the website reliable can become harder than publishing the content it exists to share.\n\nWordPress can serve organizations well. But when a site depends on a growing stack of extensions, its flexibility can come with an operational burden that the organization never intended to take on.",
+    rationaleTitle: "The idea behind it",
+    rationale: "Keep the editable, expandable publishing experience people value in WordPress, and rethink the foundation beneath it. VortiPress builds on Payload with familiar publishing workflows and an extensible architecture, while separating the public website from the content-management environment.\n\nOur aim is to reduce unnecessary dependencies, simplify routine administration, and make security and maintainability part of the platform’s design. Those goals still require careful implementation, updates, and responsible hosting.",
+    personality: "Your website should carry your message—not become your next administrative department.",
+    capabilities: ["Publish blog posts, news, and frequently updated website content.","Manage pages, events, and links to external donation services.","Extend content types and publishing workflows as your needs grow.","Manage content separately from the website that presents it.","Build on an extensible foundation intended for open-source release."],
+    audience: "Nonprofits, independent publishers, community groups, small businesses, and teams that want familiar publishing tools with room to grow. VortiPress is especially relevant when maintaining a collection of plugins has become a distraction from communicating with the people you serve.",
+    businessCase: [{"heading":"They needed to publish. They inherited a maintenance job.","paragraphs":["The idea behind VortiPress grew from our experience with nonprofits using WordPress. They were paying substantial hosting and maintenance costs for websites that loaded slowly, accumulated unnecessary complexity, and suffered recurring failures.","Their needs were not unusual: explain the mission, publish news, announce events, link to donation services, and keep information current. WordPress looked like the practical answer because it combined familiar editing with a large ecosystem of themes and plugins.","Over time, however, keeping the website working became a separate responsibility. The organization wanted to communicate with its community. Instead, it also had to manage the machinery behind that communication."]},{"heading":"Flexibility can accumulate a cost","paragraphs":["WordPress’s extension ecosystem is one of its strengths. It allows organizations to add capabilities without commissioning everything from scratch. But a site assembled from independently maintained components can also inherit competing requirements, overlapping features, and different release schedules.","The resulting work can include:"],"items":["Testing updates for compatibility between plugins, themes, and the platform.","Paying recurring extension licenses and support fees.","Tracking abandoned or unmaintained dependencies.","Investigating slow pages caused by additional scripts, queries, and integrations.","Maintaining backups, recovery procedures, permissions, and security updates.","Preserving content and workflows when changing themes or replacing extensions."],"closing":"These problems do not automatically mean the developer did poor work. They can emerge as the organization’s needs change and the site’s dependencies grow. Hosting, configuration, implementation choices, and maintenance capacity all affect the outcome."},{"heading":"A different foundation for familiar work","paragraphs":["VortiPress keeps the publishing needs at the center: editable pages, timely news, events, and content that changes as the organization works. Built on Payload, it separates the editorial environment from the public website and provides a foundation that developers can extend.","The intention is to make common publishing work easier to sustain, with fewer unnecessary dependencies and clearer responsibility for the capabilities an organization actually uses.","Separating the public website and administration environment creates opportunities to control exposure and deployment independently. It does not eliminate vulnerabilities or replace secure configuration, access controls, testing, and updates."]},{"heading":"Open to extension. Accountable for upkeep.","paragraphs":["VortiPress is intended for open-source release so others can inspect, adapt, and build upon it. We want extensibility to remain a strength, supported by clear interfaces and deliberate decisions about what belongs in the platform.","Success means more than replacing one technology stack with another. It means helping organizations spend less effort maintaining their publishing tools and more effort getting their message out. Lower costs, better performance, and stronger security must be demonstrated in real deployments."]}],
     image: { src: planning, alt: 'An overhead view of a bright workspace with a laptop, notebook, and someone working.', credit: 'Luna Lovegood / Pexels', position: '50% 50%' },
   },
   {

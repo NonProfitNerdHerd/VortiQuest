@@ -38,7 +38,7 @@ Until `site.domainConfirmed` is true, pages are noindex and robots disallows ind
 
 1. Confirm domain and update `site.domainConfirmed`; set the production `SITE_URL` in Cloudflare.
 2. Add the GitHub account and three repository URLs, replacing **Add Link**. Verify licenses and setup documentation independently for each product.
-3. Confirm VortiQuest and VortiBlog copy and capabilities. Set their `verified` flags only after review. The discovered `NonProfitNerdHerd/vorti-blog` README describes **VortiCause**, so do not automatically link it to VortiBlog.
+3. Confirm VortiQuest and VortiPress copy and capabilities. Set their `verified` flags only after review. The discovered `NonProfitNerdHerd/vorti-blog` README describes **VortiCause**, so do not automatically link it to VortiPress.
 4. Replace clearly labeled product identity illustrations with real application screenshots and useful alt text/captions. Use responsive images through Astro's image component, with fixed dimensions and lazy loading below the fold. The current illustrations are native CSS/SVG; they do not impersonate application screens.
 5. Review the privacy notice.
 6. Review the included 1200×630 `public/social.png` social preview; its editable source is `public/social.svg`.
@@ -86,7 +86,7 @@ Client interests lead the recommendations: buying SaaS, connecting existing tool
 
 ## Product business cases and navigation
 
-The header stays visible while scrolling, with a solid background, anchor offsets, and an Escape-to-close mobile menu. Product case content and photos live in the typed product data. Products and detail pages share the same narrative component: problem, rationale, capabilities, audience, and next actions. VortiQuest is the media inbox project; the company shares its name. All three projects are currently presented as in development, without application or repository links. Collection order is VortiBlog, VortiCause, then VortiQuest. VortiBlog’s detailed story and feature set are still being prepared. Editorial images illustrate use contexts and are not application screenshots.
+The header stays visible while scrolling, with a solid background, anchor offsets, and an Escape-to-close mobile menu. Product case content and photos live in the typed product data. Products and detail pages share the same narrative component: problem, rationale, capabilities, audience, and next actions. VortiQuest is the media inbox project; the company shares its name. All three projects are currently presented as in development, without application or repository links. Collection order is VortiPress, VortiCause, then VortiQuest. VortiPress’s capabilities were confirmed by the owner; its expanded business case appears only on the detail page. The product remains unreleased. Editorial images illustrate use contexts and are not application screenshots.
 
 The old `/products/vorti-youtube-feeder/` route redirects permanently to `/products/vortiquest/` using Cloudflare `_redirects`, with and without a trailing slash. The legacy product inquiry name is normalized to VortiQuest. Astro preview does not emulate Cloudflare redirects; validate status and Location through Wrangler or the deployed preview.
 

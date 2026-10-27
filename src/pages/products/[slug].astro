@@ -9,5 +9,6 @@ const { product: p } = Astro.props;
 <Layout title={p.name+' — The business case'} description={p.description}>
 <section class="container page-hero product-detail-heading"><a href="/products/" class="back-link">← All products</a><span class="eyebrow">A PRODUCT BY VORTIQUEST / THE BUSINESS CASE</span><h1>{p.name}<span class="serif-period">.</span></h1></section>
 <div class="container"><ProductCase product={p} detail/></div>
+{p.businessCase && <div class="container expanded-business-case">{p.businessCase.map(section => <section><h2>{section.heading}</h2>{section.paragraphs.map(paragraph => <p>{paragraph}</p>)}{section.items && <ul>{section.items.map(item => <li>{item}</li>)}</ul>}{section.closing && <p>{section.closing}</p>}</section>)}</div>}
 <section class="container section product-development"><span class="eyebrow">IN DEVELOPMENT</span><h2>A conversation<br/><em>about fit.</em></h2><p>This project is still in development. The business case describes the problem and direction; the application and source are not yet available for release.</p><p>We can discuss your needs, alternatives, and the responsibilities involved in a future implementation.</p><a class="text-link" href={'/contact/?product='+encodeURIComponent(p.name)}>Discuss {p.name} ↗</a></section><CTA/>
 </Layout>

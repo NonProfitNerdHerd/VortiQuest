@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 const root = resolve('dist');
-const requiredPages = ['index.html','services/index.html','products/index.html','products/vortiquest/index.html','products/vortiblog/index.html','products/vorticause/index.html','about/index.html','contact/index.html','privacy/index.html','404.html','blog/index.html',...['technology-decisions','custom-development','integrations','ai-automation','hosting-support'].map(id => `blog/topics/${id}/index.html`)];
+const requiredPages = ['index.html','services/index.html','products/index.html','products/vortiquest/index.html','products/vortipress/index.html','products/vorticause/index.html','about/index.html','contact/index.html','privacy/index.html','404.html','blog/index.html',...['technology-decisions','custom-development','integrations','ai-automation','hosting-support'].map(id => `blog/topics/${id}/index.html`)];
 
 const pages = [...new Set([...requiredPages, ...readdirSync(root, { recursive: true }).filter(file => file.endsWith('.html'))])];
 
@@ -45,7 +45,7 @@ test('contact route uses the supplied business email and has no pretend form', (
   assert.match(html, /role="status"/);
 });
 test('unfinished products retain business cases without release links', () => {
-  for (const slug of ['vorticause','vortiblog','vortiquest']) {
+  for (const slug of ['vorticause','vortipress','vortiquest']) {
     const html = readFileSync(join(root, `products/${slug}/index.html`), 'utf8');
     assert.match(html, /In development/);
     assert.doesNotMatch(html, /Product website|GitHub repository|View on GitHub|href="https:\/\/app\.vorti\.quest/);
@@ -80,7 +80,7 @@ test('the deployed blog supports an empty state and excludes the sample draft', 
 });
 
 test('product listings follow the agreed order and retain internal case links', () => {
- const slugs = ['vortiblog', 'vorticause', 'vortiquest'];
+ const slugs = ['vortipress', 'vorticause', 'vortiquest'];
  const home = readFileSync(join(root, 'index.html'), 'utf8');
  const collection = readFileSync(join(root, 'products/index.html'), 'utf8');
  for (const html of [home, collection]) {
@@ -93,4 +93,22 @@ test('product listings follow the agreed order and retain internal case links', 
  for (const page of pages) {
    assert.doesNotMatch(readFileSync(join(root, page), 'utf8'), /href="https:\/\/app\.vorti\.quest/);
  }
+});
+
+test('VortiPress replaces VortiBlog while preserving legacy routes and anchors', () => {
+ const redirects=readFileSync(join(root,'_redirects'),'utf8');
+ assert.match(redirects,/^\/products\/vortiblog\/ \/products\/vortipress\/ 301$/m);
+ assert.match(redirects,/^\/products\/vortiblog \/products\/vortipress\/ 301$/m);
+ const detail=readFileSync(join(root,'products/vortipress/index.html'),'utf8');
+ const collection=readFileSync(join(root,'products/index.html'),'utf8');
+ assert.match(detail,/rel="canonical" href="https:\/\/vorti.quest\/products\/vortipress\/"/);
+ assert.match(detail,/They needed to publish. They inherited a maintenance job./);
+ assert.doesNotMatch(collection,/They needed to publish. They inherited a maintenance job./);
+ assert.match(collection,/id="vortiblog"/);
+ assert.match(detail,/Publish blog posts, news, and frequently updated website content./);
+ assert.doesNotMatch(detail,/PRODUCT DETAILS BEING PREPARED/);
+ const sitemap=readFileSync(join(root,'sitemap-0.xml'),'utf8');
+ assert.match(sitemap,/\/products\/vortipress\//);
+ assert.doesNotMatch(sitemap,/vortiblog/);
+ for(const page of pages) assert.doesNotMatch(readFileSync(join(root,page),'utf8'),/VortiBlog|href="\/products\/vortiblog/);
 });

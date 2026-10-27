@@ -386,3 +386,15 @@ main :where(section,article,figure,div,aside),.footer-top>*{min-width:0}
  .skills-copy .eyebrow,.contact-band-copy .eyebrow{letter-spacing:.1em}
  .contact-band-copy .button{width:100%;gap:12px}
 }
+
+/* Extended product narratives stay readable without lengthening collection summaries. */
+.product-case{position:relative}
+.legacy-product-anchor{position:absolute;top:0;left:0;scroll-margin-top:calc(var(--header-height) + 24px)}
+.case-story p+p{margin-top:18px}
+.expanded-business-case{max-width:900px;padding-block:48px 16px}
+.expanded-business-case section+section{margin-top:48px}
+.expanded-business-case h2{font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.2;letter-spacing:-.035em}
+.expanded-business-case p,.expanded-business-case ul{margin-top:22px;line-height:1.85}
+.expanded-business-case ul{padding-left:24px;color:var(--muted)}
+.expanded-business-case li+li{margin-top:10px}
+@media(max-width:580px){.expanded-business-case{padding-top:32px}.expanded-business-case section+section{margin-top:36px}}
