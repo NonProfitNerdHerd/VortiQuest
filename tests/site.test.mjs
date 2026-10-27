@@ -136,10 +136,11 @@ test('VortiTask has a discoverable placeholder and contact inquiry support', () 
 
 test('VortiCause presents donor operations and an anonymous detail-only case', () => {
  const html = readFileSync(join(root, 'products/vorticause/index.html'), 'utf8');
- assert.match(html, /manage donor relationships/);
+ assert.match(html, /Your community is growing/);
  assert.match(html, /no software license or per-contact fee/);
  assert.match(html, /national, regional, and local/);
- assert.match(html, /When keeping relationships becomes a budget decision/);
+ assert.match(html, /Nobody should have to ask which supporters are worth keeping/);
+ assert.doesNotMatch(html, /When keeping relationships becomes a budget decision|Who it fits|What it helps you do/);
  assert.doesNotMatch(html, /Kindful|CiviCRM|A headless content management and collaboration platform/i);
  assert.doesNotMatch(readFileSync(join(root, 'products/index.html'), 'utf8'), /When keeping relationships becomes a budget decision/);
 });
@@ -155,7 +156,7 @@ test('collection retains development notices and prominent business-case buttons
 
 test('VortiCause article includes engagement, volunteer, and participation workflows', () => {
  const html = readFileSync(join(root, 'products/vorticause/index.html'), 'utf8');
- for (const text of ['Volunteer work that stays connected', 'Thank-yous and engagement', 'Events, memberships', 'Knowledge that leads to action', 'Prepare an acknowledgment', 'Assign follow-up']) assert.ok(html.includes(text), text);
+ for (const text of ['Volunteers deserve better than being managed from memory', 'A missed thank-you is usually a process problem', 'Events and memberships', 'Reporting and shared organizational knowledge', 'Acknowledgments and thank-yous', 'Workflows, reminders, and assigned follow-up']) assert.ok(html.includes(text), text);
  assert.match(html, /<ul>/);
 });
 

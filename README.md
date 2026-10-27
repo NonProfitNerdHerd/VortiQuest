@@ -111,3 +111,5 @@ The Services capabilities introduction uses a mist-blue edge-to-edge band with w
 VortiCause’s expanded article covers owner-confirmed donor and volunteer management, fundraising, acknowledgments, engagement workflows, events, memberships, reporting, and organizational permissions. Examples illustrate workflows rather than measured customer outcomes. Competitors are not named.
 
 The VortiPress business-case article is maintained in `src/data/business-cases/vortipress.md`, replacing its former shared-data narrative and appended capability/audience sections. Its owner-supplied editorial copy preserves emphasis and bullets; the October 2026 PHP security reference links to the official advisory. Collection introductions remain in `src/data/site.ts`.
+
+The VortiCause business-case replacement is maintained in `src/data/business-cases/vorticause.md`. VortiPress and VortiCause share the editorial renderer and header-aligned width; each supplied article replaces the old narrative and appended sections in full. Their closing contact links retain the appropriate product inquiry.

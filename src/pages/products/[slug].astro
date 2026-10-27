@@ -2,31 +2,34 @@
 import Layout from '../../layouts/Layout.astro';
 import CTA from '../../components/CTA.astro';
 import { Content as VortiPressArticle, frontmatter as vortiPressArticle } from '../../data/business-cases/vortipress.md';
+import { Content as VortiCauseArticle, frontmatter as vortiCauseArticle } from '../../data/business-cases/vorticause.md';
 import { products } from '../../data/site';
 import type { BusinessCaseSection } from '../../data/site';
 export function getStaticPaths() { return products.map(product => ({ params: { slug: product.slug }, props: { product } })); }
 const { product: p } = Astro.props;
+const editorial = p.slug === 'vortipress' ? { Content: VortiPressArticle, title: vortiPressArticle.title, description: vortiPressArticle.description } : p.slug === 'vorticause' ? { Content: VortiCauseArticle, title: vortiCauseArticle.title, description: vortiCauseArticle.description } : undefined;
+const EditorialContent = editorial?.Content;
 const sections: BusinessCaseSection[] = p.businessCase ?? [
   { heading: 'The problem', paragraphs: p.problem.split('\n\n') },
   { heading: p.rationaleTitle, paragraphs: p.rationale.split('\n\n') },
 ];
 const platformNote = p.platformNote?.replace(/^In development for /, 'The platform approach includes ');
 ---
-<Layout title={p.name+' — The business case'} description={p.slug === 'vortipress' ? vortiPressArticle.description : p.description}>
+<Layout title={p.name+' — The business case'} description={editorial?.description ?? p.description}>
 <article class="business-article container" aria-labelledby="business-title">
-  {p.slug === 'vortipress' ? <>
+  {editorial && EditorialContent ? <>
     <header>
       <a href="/products/" class="back-link">← All products</a>
-      <span class="eyebrow">VORTIPRESS / THE BUSINESS CASE</span>
-      <h1 id="business-title" class="business-editorial-title">{vortiPressArticle.title}</h1>
+      <span class="eyebrow">{p.name.toUpperCase()} / THE BUSINESS CASE</span>
+      <h1 id="business-title" class="business-editorial-title">{editorial.title}</h1>
     </header>
-    <div class="business-editorial"><VortiPressArticle/></div>
+    <div class="business-editorial"><EditorialContent/></div>
   </> : <>
   <header>
     <a href="/products/" class="back-link">← All products</a>
     <span class="eyebrow">A PRODUCT BY VORTIQUEST / THE BUSINESS CASE</span>
     <h1 id="business-title">{p.name}<span class="serif-period">.</span></h1>
-    <p class="business-deck">{p.slug === 'vorticause' ? 'A nonprofit platform built around relationships and mission.' : p.summary}</p>
+    <p class="business-deck">{p.summary}</p>
     {p.description.split('\n\n').map(paragraph => <p>{paragraph}</p>)}
   </header>
   {sections.map(section => <><hr/><section><h2>{section.heading}</h2>{section.paragraphs.map(paragraph => <p>{paragraph}</p>)}{section.items && <ul>{section.items.map(item => <li>{item}</li>)}</ul>}{section.closing && <p>{section.closing}</p>}</section></>)}
