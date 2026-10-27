@@ -2,10 +2,10 @@
 import { Image } from 'astro:assets';
 import ProductArt from './ProductArt.astro';
 import type { Product } from '../data/site';
-interface Props { product: Product; priority?: boolean }
-const { product: p, priority = false } = Astro.props;
+interface Props { product: Product }
+const { product: p } = Astro.props;
 ---
 <figure class:list={['product-visual', p.slug]}>
-  <div class="product-visual-frame"><Image src={p.image.src} widths={[480, 800, 1200]} sizes="(max-width: 800px) 100vw, 48vw" alt={p.image.alt} loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} format="webp" quality={82} style={`object-position:${p.image.position}`}/><div class="product-identity"><ProductArt kind={p.mark}/></div></div>
+  <div class="product-visual-frame"><Image src={p.image.src} widths={[480, 800, 1200]} sizes="(max-width: 800px) 100vw, 48vw" alt={p.image.alt} loading="lazy" format="webp" quality={82} style={`object-position:${p.image.position}`}/><div class="product-identity"><ProductArt kind={p.mark}/></div></div>
   <figcaption>Illustrative photograph · {p.image.credit}. Product identity graphic.</figcaption>
 </figure>

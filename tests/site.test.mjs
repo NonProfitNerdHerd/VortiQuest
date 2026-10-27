@@ -154,3 +154,24 @@ test('VortiCause article includes engagement, volunteer, and participation workf
  for (const text of ['Volunteer work that stays connected', 'Thank-yous and engagement', 'Events, memberships', 'Knowledge that leads to action', 'Prepare an acknowledgment', 'Assign follow-up']) assert.ok(html.includes(text), text);
  assert.match(html, /<ul>/);
 });
+
+
+test('collection introduces each product without duplicating its business case', () => {
+ const html = readFileSync(join(root, 'products/index.html'), 'utf8');
+ const introductions = [...html.matchAll(/<section class="product-intro"[\s\S]*?<\/section>/g)].map(match => match[0]);
+ assert.equal(introductions.length, 4);
+ for (const [i, slug] of ['vortipress','vorticause','vortitask','vortiquest'].entries()) {
+   const section = introductions[i];
+   assert.ok(section.includes('id="' + slug + '"'));
+   assert.match(section, /class="case-tagline"/);
+   assert.match(section, /class="case-description"/);
+   assert.match(section, /<img[^>]+loading="lazy"/);
+   assert.match(section, /Illustrative photograph/);
+   assert.match(section, /Read the business case/);
+   assert.match(section, /Discuss the fit/);
+   assert.match(section, /In development/);
+   assert.doesNotMatch(section, /<h3|<ul|The problem|The idea behind it|What it helps you do|Who it fits|case-preparing|case-platform|case-personality/);
+   assert.ok(section.indexOf('Read the business case') < section.indexOf('<figure'));
+ }
+ assert.match(html, /id="vortiblog"/);
+});

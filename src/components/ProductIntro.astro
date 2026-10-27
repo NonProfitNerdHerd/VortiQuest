@@ -1,0 +1,23 @@
+---
+import ProductVisual from './ProductVisual.astro';
+import type { Product } from '../data/site';
+interface Props { product: Product }
+const { product: p } = Astro.props;
+---
+<section class="product-intro" id={p.slug} aria-labelledby={`${p.slug}-title`}>
+  {p.slug === 'vortipress' && <span id="vortiblog" class="legacy-product-anchor" aria-hidden="true"></span>}
+  <div class="product-intro-grid">
+    <div class="case-introduction">
+      <span class="eyebrow">{p.category}</span>
+      <h2 id={`${p.slug}-title`}><a href={`/products/${p.slug}/`}>{p.name}<span class="serif-period">.</span></a></h2>
+      <p class="case-tagline">{p.summary}</p>
+      {p.description.split('\n\n').map(paragraph => <p class="case-description">{paragraph}</p>)}
+      <div class="case-actions">
+        <a class="button" href={`/products/${p.slug}/`}>Read the business case <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href={`/contact/?product=${encodeURIComponent(p.name)}`}>Discuss the fit <span aria-hidden="true">↗</span></a>
+      </div>
+      <p class="product-status">In development · Not yet available for release.</p>
+    </div>
+    <ProductVisual product={p}/>
+  </div>
+</section>

@@ -414,3 +414,15 @@ main :where(section,article,figure,div,aside),.footer-top>*{min-width:0}
 .business-article hr{border:0;border-top:1px solid var(--line);margin-block:36px}
 .business-contact .text-link{margin-top:20px}
 @media(max-width:580px){.business-article{width:calc(100% - 40px);padding-block:40px 56px}.business-article hr{margin-block:28px}.business-article .back-link{margin-bottom:28px}}
+
+/* Collection introductions: copy and actions left, illustrative photography right. */
+.product-intro{position:relative;padding-block:56px;border-top:1px solid var(--line);scroll-margin-top:calc(var(--header-height,110px) + 24px)}
+.product-intro-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start}
+.product-intro .case-introduction{max-width:none;min-width:0;margin:0}
+.product-intro .product-visual{margin:0}
+.product-intro .product-visual .product-visual-frame>img{height:auto;aspect-ratio:4/3;object-fit:cover}
+.product-intro .case-actions{gap:16px 24px}
+.product-intro .case-actions>.button{width:auto;max-width:none}
+.product-intro .product-status{margin-top:16px}
+@media(max-width:800px){.product-intro{padding-block:40px}.product-intro-grid{grid-template-columns:1fr;gap:28px}}
+@media(max-width:580px){.product-intro .case-actions>.button{width:100%}}
