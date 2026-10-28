@@ -194,3 +194,14 @@ test('VortiChaser has the supplied business case and an internal product inquiry
  assert.match(html, /href="\/contact\/\?product=VortiChaser"/);
  assert.match(readFileSync(join(root, 'sitemap-0.xml'), 'utf8'), /\/products\/vortichaser\//);
 });
+
+
+test('VortiQuest uses the supplied subscription-inbox business case', () => {
+ const html = readFileSync(join(root, 'products/vortiquest/index.html'), 'utf8');
+ assert.match(html, /You already chose what to follow. Why are you still hunting for it/);
+ assert.match(html, /<strong>A chronological subscription inbox:<\/strong>/);
+ assert.match(html, /Shared infrastructure should not mean selling your interests/);
+ assert.match(html, /The same new video does not need to be discovered a thousand times/);
+ assert.match(html, /href="\/contact\/\?product=VortiQuest"/);
+ assert.doesNotMatch(html, /Who it fits|What it helps you do|Our first application started with a simple question/);
+});
